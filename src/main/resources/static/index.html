@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nuvox Records · Plataforma de demos</title>
+  <meta name="description" content="Nuvox Records: envía tu demo con un enlace de SoundCloud o Dropbox y sigue su estado curatorial.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ===================== LOGIN ===================== -->
+  <main id="vista-login" class="login">
+    <section class="login-card">
+      <div class="vinilo" aria-hidden="true"></div>
+      <h1 class="marca">NUVOX <span>RECORDS</span></h1>
+      <p class="lema">Plataforma curatorial A&amp;R · Recepción de demos</p>
+
+      <div class="tabs" role="tablist">
+        <button id="tab-login" class="tab activa" role="tab" type="button">Ingresar</button>
+        <button id="tab-registro" class="tab" role="tab" type="button">Soy artista nuevo</button>
+      </div>
+
+      <form id="form-login" autocomplete="on">
+        <label>Correo
+          <input id="login-user" type="email" required autocomplete="username" placeholder="tu@correo.com">
+        </label>
+        <label>Contraseña
+          <input id="login-pass" type="password" required autocomplete="current-password">
+        </label>
+        <button id="btn-login" class="btn btn-primario" type="submit">Entrar</button>
+      </form>
+
+      <form id="form-registro" class="oculto" autocomplete="off">
+        <label>Nombre artístico / completo
+          <input id="reg-nombre" type="text" required maxlength="120">
+        </label>
+        <label>Correo
+          <input id="reg-user" type="email" required>
+        </label>
+        <label>Contraseña (mín. 8 caracteres)
+          <input id="reg-pass" type="password" required minlength="8" maxlength="72">
+        </label>
+        <button id="btn-registro" class="btn btn-primario" type="submit">Crear cuenta de artista</button>
+      </form>
+
+      <p id="login-msg" class="mensaje" role="alert"></p>
+    </section>
+  </main>
+
+  <!-- ===================== PANEL ===================== -->
+  <div id="vista-panel" class="oculto">
+    <header class="barra">
+      <div class="marca marca-sm">NUVOX <span>RECORDS</span></div>
+      <div class="barra-usuario">
+        <span id="usuario-info"></span>
+        <button id="btn-logout" class="btn btn-fantasma" type="button">Salir</button>
+      </div>
+    </header>
+
+    <main class="contenedor">
+      <div class="encabezado">
+        <div>
+          <h1 id="titulo-panel">Expedientes de demos</h1>
+          <p id="subtitulo-panel" class="sub"></p>
+        </div>
+        <button id="btn-nueva" class="btn btn-primario" type="button">+ Enviar demo</button>
+      </div>
+
+      <section class="resumen" aria-label="Resumen">
+        <div class="stat"><strong id="stat-total">0</strong><span>Total</span></div>
+        <div class="stat"><strong id="stat-rev">0</strong><span>En revisión</span></div>
+        <div class="stat"><strong id="stat-apr">0</strong><span>Aprobadas</span></div>
+        <div class="stat"><strong id="stat-rec">0</strong><span>Rechazadas</span></div>
+      </section>
+
+      <div class="filtros">
+        <input id="buscar" type="search" placeholder="Buscar por título, artista o código…">
+        <select id="filtro-estado">
+          <option value="">Todos los estados</option>
+          <option value="EN_REVISION">En revisión</option>
+          <option value="APROBADO">Aprobado</option>
+          <option value="RECHAZADO">Rechazado</option>
+        </select>
+      </div>
+
+      <p id="panel-msg" class="mensaje" role="alert"></p>
+      <section id="lista" class="grid" aria-live="polite"></section>
+    </main>
+  </div>
+
+  <!-- ===================== FORMULARIO DEMO ===================== -->
+  <dialog id="dlg-demo">
+    <form id="form-demo" method="dialog">
+      <h2 id="dlg-titulo">Enviar demo</h2>
+      <div class="cols">
+        <label>Título de la obra *<input id="f-titulo" required maxlength="150"></label>
+        <label>Nombre artístico *<input id="f-artista" required maxlength="120"></label>
+        <label>Correo del artista *<input id="f-correo" type="email" required maxlength="120"></label>
+        <label>Género musical *<input id="f-genero" required maxlength="80"></label>
+        <label>País *<input id="f-pais" required maxlength="60"></label>
+        <label>Formato de audio *<input id="f-formato" required maxlength="60" placeholder="WAV 24-bit / 48kHz"></label>
+        <label>BPM<input id="f-bpm" type="number" min="1" max="400"></label>
+        <label>Tonalidad<input id="f-tono" maxlength="40" placeholder="D Minor"></label>
+      </div>
+      <label>Enlace de la demo (SoundCloud o Dropbox) *
+        <input id="f-enlace" type="url" required maxlength="500" placeholder="https://soundcloud.com/tu-artista/tu-demo">
+      </label>
+      <p class="ayuda">No se suben archivos: pega un enlace compartido (público o privado) de SoundCloud o Dropbox.</p>
+      <label>Notas del artista<textarea id="f-notas" rows="2"></textarea></label>
+
+      <div id="bloque-comite" class="oculto">
+        <div class="cols">
+          <label>Código de expediente<input id="f-codigo" maxlength="30" placeholder="Se genera si lo dejas vacío"></label>
+          <label>Estado curatorial
+            <select id="f-estado">
+              <option value="EN_REVISION">En revisión</option>
+              <option value="APROBADO">Aprobado</option>
+              <option value="RECHAZADO">Rechazado</option>
+            </select>
+          </label>
+        </div>
+        <label>Dictamen del comité<textarea id="f-dictamen" rows="2"></textarea></label>
+      </div>
+
+      <p id="demo-msg" class="mensaje" role="alert"></p>
+      <div class="acciones">
+        <button id="btn-cancelar" class="btn btn-fantasma" type="button">Cancelar</button>
+        <button id="btn-guardar" class="btn btn-primario" type="submit">Guardar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
