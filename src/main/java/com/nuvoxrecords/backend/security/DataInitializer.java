@@ -41,6 +41,16 @@ public class DataInitializer implements CommandLineRunner {
                     .build();
             usuarioRepository.save(artista);
         }
+        if (!usuarioRepository.existsByUsername("admin@nuvox.com")) {
+            Usuario admin = Usuario.builder()
+                    .username("admin@nuvox.com")
+                    .password(passwordEncoder.encode("Admin123!"))
+                    .nombreCompleto("Administrador Nuvox Records")
+                    .rol("ROLE_COMITE_AR")
+                    .activo(true)
+                    .build();
+            usuarioRepository.save(admin);
+        }
 
         if (demoRepository.count() == 0) {
             Demo demoInicial = Demo.builder()
