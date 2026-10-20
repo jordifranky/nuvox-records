@@ -3,136 +3,313 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nuvox Records · Plataforma de demos</title>
+  <title>Nuvox Records · Plataforma Curatorial A&amp;R</title>
   <meta name="description" content="Nuvox Records: envía tu demo con un enlace de SoundCloud o Dropbox y sigue su estado curatorial.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-  <!-- ===================== LOGIN ===================== -->
-  <main id="vista-login" class="login">
-    <section class="login-card">
-      <div class="vinilo" aria-hidden="true"></div>
-      <h1 class="marca">NUVOX <span>RECORDS</span></h1>
-      <p class="lema">Plataforma curatorial A&amp;R · Recepción de demos</p>
+  <!-- Iconos reutilizables (SVG inline, sin dependencias externas) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="i-out" viewBox="0 0 24 24"><path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M16 16l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 3l10 18H2z" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linejoin="round"/><path d="M12 10v5M12 17.5v.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linejoin="round"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M5 7h14M10 7V4h4v3M7 7l1 13h8l1-13" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="1.5" stroke="currentColor" stroke-width="1.7" fill="none"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.7" fill="none"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="i-disc" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6" fill="none"/><circle cx="12" cy="12" r="2.2" fill="currentColor"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.7" fill="none"/><rect x="13" y="4" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.7" fill="none"/><rect x="4" y="13" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.7" fill="none"/><rect x="13" y="13" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.7" fill="none"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.7" fill="none"/><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-return" viewBox="0 0 24 24"><path d="M9 7L4 12l5 5M4 12h11a5 5 0 0 1 0 10h-2" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M5 5a2 2 0 0 1 2-2h12v16H7a2 2 0 0 0-2 2zM5 5v16" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linejoin="round"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  </svg>
 
-      <div class="tabs" role="tablist">
-        <button id="tab-login" class="tab activa" role="tab" type="button">Ingresar</button>
-        <button id="tab-registro" class="tab" role="tab" type="button">Soy artista nuevo</button>
+  <!-- ===================== ACCESO ===================== -->
+  <main id="vista-login" class="acceso">
+    <aside class="acceso-marca" aria-hidden="true">
+      <h1 class="logo-grande">NUVOX<br>RECORDS</h1>
+      <p class="mono acento-oro">A&amp;R CURATORIAL &amp; ARTIST PLATFORM</p>
+      <div class="onda">
+        <svg viewBox="0 0 240 70" preserveAspectRatio="none">
+          <path d="M0 35 C 20 35, 30 10, 50 14 S 80 58, 100 52 S 130 18, 150 24 S 190 50, 210 40 S 230 32, 240 34" fill="none" stroke="#8E4B4B" stroke-width="1.6"/>
+          <path d="M0 38 C 25 38, 40 26, 60 30 S 95 44, 120 38 S 160 28, 185 34 S 225 40, 240 37" fill="none" stroke="#B7B0A4" stroke-width="1" opacity=".55"/>
+          <circle cx="50" cy="14" r="2.4" fill="#C2A878"/><circle cx="150" cy="24" r="2.4" fill="#C2A878"/>
+        </svg>
+      </div>
+      <p class="acceso-texto"><strong>Tu música merece ser escuchada.</strong> Comparte tu demo, sigue su camino paso a paso y deja que el comité A&amp;R descubra tu sonido.</p>
+    </aside>
+
+    <section class="acceso-card">
+      <p class="eyebrow vino" id="acceso-eyebrow">CREDENCIAL DE ENTRADA</p>
+      <h2 class="acceso-titulo" id="acceso-titulo">Acceso</h2>
+
+      <div class="segmento" role="tablist" id="segmento-rol">
+        <button id="tab-staff" class="seg activo" role="tab" type="button">Ingresar</button>
+        <button id="tab-artista" class="seg" role="tab" type="button">Artista</button>
       </div>
 
-      <form id="form-login" autocomplete="on">
-        <label>Correo
+      <form id="form-login" autocomplete="on" novalidate>
+        <label class="campo">
+          <span>Correo electrónico</span>
           <input id="login-user" type="email" required autocomplete="username" placeholder="tu@correo.com">
         </label>
-        <label>Contraseña
-          <input id="login-pass" type="password" required autocomplete="current-password">
+        <label class="campo">
+          <span>Clave de acceso</span>
+          <input id="login-pass" type="password" required autocomplete="current-password" placeholder="••••••••">
         </label>
-        <button id="btn-login" class="btn btn-primario" type="submit">Entrar</button>
+        <button id="btn-login" class="btn btn-primario btn-ancho" type="submit">Ingresar <span aria-hidden="true">→</span></button>
+        <p class="enlace-alterno" id="ir-registro-wrap">¿No tienes cuenta? <a href="#" id="ir-registro">Regístrate aquí</a></p>
       </form>
 
-      <form id="form-registro" class="oculto" autocomplete="off">
-        <label>Nombre artístico / completo
-          <input id="reg-nombre" type="text" required maxlength="120">
+      <form id="form-registro" class="oculto" autocomplete="off" novalidate>
+        <label class="campo">
+          <span>Nombre artístico o completo</span>
+          <input id="reg-nombre" type="text" required maxlength="120" placeholder="Ej. Arvo Valen">
         </label>
-        <label>Correo
-          <input id="reg-user" type="email" required>
+        <label class="campo">
+          <span>Correo electrónico</span>
+          <input id="reg-user" type="email" required placeholder="tu@correo.com">
         </label>
-        <label>Contraseña (mín. 8 caracteres)
+        <label class="campo">
+          <span>Contraseña <em>(mínimo 8 caracteres)</em></span>
           <input id="reg-pass" type="password" required minlength="8" maxlength="72">
         </label>
-        <button id="btn-registro" class="btn btn-primario" type="submit">Crear cuenta de artista</button>
+        <button id="btn-registro" class="btn btn-primario btn-ancho" type="submit">Crear cuenta de artista</button>
+        <p class="enlace-alterno">¿Ya tienes cuenta? <a href="#" id="ir-login">Ingresa aquí</a></p>
       </form>
 
       <p id="login-msg" class="mensaje" role="alert"></p>
+
+      <p class="acceso-pie" id="acceso-pie"></p>
     </section>
   </main>
 
-  <!-- ===================== PANEL ===================== -->
-  <div id="vista-panel" class="oculto">
-    <header class="barra">
-      <div class="marca marca-sm">NUVOX <span>RECORDS</span></div>
-      <div class="barra-usuario">
-        <span id="usuario-info"></span>
-        <button id="btn-logout" class="btn btn-fantasma" type="button">Salir</button>
+  <!-- ===================== APLICACIÓN ===================== -->
+  <div id="vista-panel" class="app oculto">
+    <aside class="rail" id="rail">
+      <div class="rail-logo">
+        <svg class="ic"><use href="#i-disc"/></svg>
+        <span>NUVOX <em>RECORDS</em></span>
       </div>
-    </header>
+      <div class="rol-chip mono" id="rol-chip">COMITÉ A&amp;R</div>
 
-    <main class="contenedor">
-      <div class="encabezado">
-        <div>
-          <h1 id="titulo-panel">Expedientes de demos</h1>
+      <!-- El menú se arma en app.js según el rol (comité o artista) -->
+      <nav class="rail-nav" id="rail-nav" aria-label="Menú principal"></nav>
+
+      <div class="rail-usuario">
+        <div class="avatar" id="avatar">EV</div>
+        <div class="rail-usuario-txt">
+          <strong id="usuario-nombre">—</strong>
+          <span class="mono" id="usuario-rol">—</span>
+        </div>
+        <button id="btn-logout" class="btn-icono" type="button" title="Cerrar sesión" aria-label="Cerrar sesión"><svg class="ic"><use href="#i-out"/></svg></button>
+      </div>
+    </aside>
+
+    <div class="principal">
+      <header class="topbar">
+        <button id="btn-menu" class="btn-icono solo-movil" type="button" aria-label="Menú"><svg class="ic"><use href="#i-menu"/></svg></button>
+        <div class="estado-sistema mono"><span class="punto vivo"></span><span id="estado-txt">ARCHIVO ACTIVO</span></div>
+        <label class="buscador">
+          <svg class="ic"><use href="#i-search"/></svg>
+          <input id="buscar" type="search" placeholder="Buscar por título, artista o código…" aria-label="Buscar">
+        </label>
+      </header>
+
+      <main class="contenido">
+        <div class="encabezado">
+          <p class="eyebrow"><span class="punto"></span><span id="eyebrow-panel">DASHBOARD</span></p>
+          <h1><span id="titulo-panel">Expedientes de demos</span> <span class="titulo-sec" id="titulo-sec">// Comité A&amp;R</span></h1>
           <p id="subtitulo-panel" class="sub"></p>
         </div>
-        <button id="btn-nueva" class="btn btn-primario" type="button">+ Enviar demo</button>
-      </div>
 
-      <section class="resumen" aria-label="Resumen">
-        <div class="stat"><strong id="stat-total">0</strong><span>Total</span></div>
-        <div class="stat"><strong id="stat-rev">0</strong><span>En revisión</span></div>
-        <div class="stat"><strong id="stat-apr">0</strong><span>Aprobadas</span></div>
-        <div class="stat"><strong id="stat-rec">0</strong><span>Rechazadas</span></div>
-      </section>
+        <section class="metricas" id="metricas" aria-label="Resumen">
+          <div class="metrica"><small>Demos entregadas</small><p><b class="mono" id="stat-total">00</b><span>obras</span></p><em>Histórico total registrado</em></div>
+          <div class="metrica rev"><small>En revisión</small><p><b class="mono" id="stat-rev">00</b><span>en mesa</span></p><em>Pendientes de dictamen</em></div>
+          <div class="metrica apr"><small>Aprobadas</small><p><b class="mono" id="stat-apr">00</b><span>aprobadas</span></p><em>Listas para catálogo</em></div>
+          <div class="metrica rec"><small>Rechazadas</small><p><b class="mono" id="stat-rec">00</b><span>archivadas</span></p><em>Con devolución del comité</em></div>
+        </section>
 
-      <div class="filtros">
-        <input id="buscar" type="search" placeholder="Buscar por título, artista o código…">
-        <select id="filtro-estado">
-          <option value="">Todos los estados</option>
-          <option value="EN_REVISION">En revisión</option>
-          <option value="APROBADO">Aprobado</option>
-          <option value="RECHAZADO">Rechazado</option>
-        </select>
-      </div>
+        <!-- Vista: Dashboard curatorial (solo comité) -->
+        <section id="v-dashboard" class="vista oculto">
+          <button type="button" class="aviso-pendientes" id="dash-pendientes"></button>
+          <div class="dash-grid">
+            <div class="bloque-panel dash-recientes">
+              <h2>Últimos envíos</h2>
+              <ul class="filas" id="dash-recientes"></ul>
+            </div>
+            <div class="bloque-panel">
+              <h2>Géneros más enviados</h2>
+              <ul class="barras" id="dash-generos"></ul>
+            </div>
+            <div class="bloque-panel">
+              <h2>Países de origen</h2>
+              <ul class="barras" id="dash-paises"></ul>
+            </div>
+          </div>
+        </section>
 
-      <p id="panel-msg" class="mensaje" role="alert"></p>
-      <section id="lista" class="grid" aria-live="polite"></section>
-    </main>
+        <!-- Vista: Criterios de envío (solo artista) -->
+        <section id="v-criterios" class="vista oculto">
+          <div class="criterios">
+            <article class="bloque-panel"><h2>Formato de audio</h2><p>Envía tu mezcla en WAV o FLAC (24-bit recomendado). Los MP3 se aceptan solo como boceto.</p></article>
+            <article class="bloque-panel"><h2>Enlace de escucha</h2><p>Comparte un enlace https de SoundCloud (puede ser privado) o de Dropbox. No subas archivos: el comité escucha desde tu enlace.</p></article>
+            <article class="bloque-panel"><h2>Datos de la obra</h2><p>Completa título, género, país, BPM y tonalidad. Usa las notas para contar instrumentación y proceso de grabación.</p></article>
+            <article class="bloque-panel"><h2>Qué pasa después</h2><p>Tu demo entra <b>En revisión</b>. El comité la escucha y la marca como <b>Aprobada</b> o <b>Rechazada</b> con un dictamen que verás en <b>Mis demos</b>.</p></article>
+          </div>
+          <ol class="ruta">
+            <li class="hecho"><b>Enviada</b><span>Registras tu demo</span></li>
+            <li><b>En revisión</b><span>El comité la escucha</span></li>
+            <li><b>Dictamen</b><span>Aprobada o rechazada, con comentarios</span></li>
+          </ol>
+        </section>
+
+        <div class="lista-cab" id="lista-cab">
+          <h2><span id="lista-titulo">Expedientes de audio</span> <span class="chip-cuenta mono" id="cuenta">0 REGISTROS</span></h2>
+          <select id="filtro-estado" aria-label="Filtrar por estado">
+            <option value="">Todos los estados</option>
+            <option value="EN_REVISION">En revisión</option>
+            <option value="APROBADO">Aprobado</option>
+            <option value="RECHAZADO">Rechazado</option>
+          </select>
+        </div>
+
+        <p id="panel-msg" class="mensaje" role="alert"></p>
+        <section id="lista" class="lista" aria-live="polite"></section>
+      </main>
+    </div>
   </div>
 
-  <!-- ===================== FORMULARIO DEMO ===================== -->
-  <dialog id="dlg-demo">
-    <form id="form-demo" method="dialog">
-      <h2 id="dlg-titulo">Enviar demo</h2>
-      <div class="cols">
-        <label>Título de la obra *<input id="f-titulo" required maxlength="150"></label>
-        <label>Nombre artístico *<input id="f-artista" required maxlength="120"></label>
-        <label>Correo del artista *<input id="f-correo" type="email" required maxlength="120"></label>
-        <label>Género musical *<input id="f-genero" required maxlength="80"></label>
-        <label>País *<input id="f-pais" required maxlength="60"></label>
-        <label>Formato de audio *<input id="f-formato" required maxlength="60" placeholder="WAV 24-bit / 48kHz"></label>
-        <label>BPM<input id="f-bpm" type="number" min="1" max="400"></label>
-        <label>Tonalidad<input id="f-tono" maxlength="40" placeholder="D Minor"></label>
-      </div>
-      <label>Enlace de la demo (SoundCloud o Dropbox) *
-        <input id="f-enlace" type="url" required maxlength="500" placeholder="https://soundcloud.com/tu-artista/tu-demo">
-      </label>
-      <p class="ayuda">No se suben archivos: pega un enlace compartido (público o privado) de SoundCloud o Dropbox.</p>
-      <label>Notas del artista<textarea id="f-notas" rows="2"></textarea></label>
-
-      <div id="bloque-comite" class="oculto">
-        <div class="cols">
-          <label>Código de expediente<input id="f-codigo" maxlength="30" placeholder="Se genera si lo dejas vacío"></label>
-          <label>Estado curatorial
-            <select id="f-estado">
-              <option value="EN_REVISION">En revisión</option>
-              <option value="APROBADO">Aprobado</option>
-              <option value="RECHAZADO">Rechazado</option>
-            </select>
-          </label>
+  <!-- ===================== FORMULARIO DEMO (POST / PUT) ===================== -->
+  <dialog id="dlg-demo" class="dlg dlg-ancho">
+    <form id="form-demo" method="dialog" novalidate>
+      <header class="dlg-cab dlg-cab-demo">
+        <span class="dlg-portada" aria-hidden="true"></span>
+        <div>
+          <p class="eyebrow vino" id="dlg-eyebrow">INGESTA A&amp;R // NUEVO EXPEDIENTE</p>
+          <h2 id="dlg-titulo">Registrar nueva demo</h2>
         </div>
-        <label>Dictamen del comité<textarea id="f-dictamen" rows="2"></textarea></label>
+        <button type="button" class="btn-icono" id="btn-cerrar-demo" aria-label="Cerrar"><svg class="ic"><use href="#i-x"/></svg></button>
+      </header>
+
+      <div class="dlg-cuerpo">
+        <fieldset class="bloque">
+          <legend><span class="mono">01 //</span> Identidad de la obra</legend>
+          <label class="campo full"><span>Título de la pieza *</span><input id="f-titulo" required maxlength="150" placeholder="Ej. Nocturne in Obsidian, Op. 4"></label>
+          <div class="cols">
+            <label class="campo"><span>Nombre artístico *</span><input id="f-artista" required maxlength="120"></label>
+            <label class="campo"><span>Correo del artista *</span><input id="f-correo" type="email" required maxlength="120"></label>
+            <label class="campo"><span>Género musical *</span><input id="f-genero" required maxlength="80" placeholder="Ej. Neo-Classical"></label>
+            <label class="campo"><span>País *</span><input id="f-pais" required maxlength="60" placeholder="Ej. Perú"></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="bloque">
+          <legend><span class="mono">02 //</span> Archivo sonoro y ficha técnica</legend>
+          <div class="cols cols-3">
+            <label class="campo"><span>Formato de audio *</span><input id="f-formato" class="mono" required maxlength="60" placeholder="WAV 24-bit / 48kHz"></label>
+            <label class="campo"><span>BPM</span><input id="f-bpm" class="mono" type="number" min="1" max="400" placeholder="ej. 118"></label>
+            <label class="campo"><span>Tonalidad</span><input id="f-tono" class="mono" maxlength="40" placeholder="ej. D Minor"></label>
+          </div>
+          <label class="campo full"><span>Enlace de escucha (SoundCloud o Dropbox) *</span>
+            <span class="input-icono"><svg class="ic"><use href="#i-link"/></svg><input id="f-enlace" class="mono" type="url" required maxlength="500" placeholder="https://soundcloud.com/tu-artista/tu-demo"></span>
+          </label>
+          <p class="ayuda">No se suben archivos: pega un enlace compartido de SoundCloud o Dropbox (https).</p>
+          <label class="campo full"><span>Notas del artista</span><textarea id="f-notas" rows="3" placeholder="Contexto, instrumentación, proceso de grabación…"></textarea></label>
+        </fieldset>
+
+        <fieldset class="bloque oculto" id="bloque-comite">
+          <legend><span class="mono">03 //</span> Dictamen del comité</legend>
+          <div class="cols">
+            <label class="campo"><span>Código de expediente</span><input id="f-codigo" class="mono" maxlength="30" placeholder="Se genera si lo dejas vacío"></label>
+            <label class="campo"><span>Estado curatorial</span>
+              <select id="f-estado">
+                <option value="EN_REVISION">En revisión</option>
+                <option value="APROBADO">Aprobado</option>
+                <option value="RECHAZADO">Rechazado</option>
+              </select>
+            </label>
+          </div>
+          <label class="campo full"><span>Dictamen editorial</span><textarea id="f-dictamen" rows="3" placeholder="Observaciones del comité para el artista…"></textarea></label>
+        </fieldset>
       </div>
 
-      <p id="demo-msg" class="mensaje" role="alert"></p>
-      <div class="acciones">
-        <button id="btn-cancelar" class="btn btn-fantasma" type="button">Cancelar</button>
-        <button id="btn-guardar" class="btn btn-primario" type="submit">Guardar</button>
-      </div>
+      <footer class="dlg-pie">
+        <div class="pie-estado">
+          <span class="mono pie-seguro"><svg class="ic"><use href="#i-lock"/></svg>SESIÓN CIFRADA A&amp;R</span>
+          <p id="demo-msg" class="mensaje" role="alert"></p>
+        </div>
+        <div class="pie-acciones">
+          <button id="btn-cancelar" class="btn btn-secundario" type="button">Cancelar</button>
+          <button id="btn-guardar" class="btn btn-primario" type="submit">Enviar al comité</button>
+        </div>
+      </footer>
     </form>
   </dialog>
+
+  <!-- ===================== CONFIRMAR ELIMINACIÓN (DELETE) ===================== -->
+  <dialog id="dlg-borrar" class="dlg dlg-alerta">
+    <div class="franja" aria-hidden="true"></div>
+    <header class="dlg-cab">
+      <div class="alerta-cab">
+        <span class="alerta-icono"><svg class="ic"><use href="#i-warn"/></svg></span>
+        <div>
+          <p class="eyebrow vino mono">ACCIÓN IRREVERSIBLE · COMITÉ A&amp;R</p>
+          <h2>Eliminar expediente</h2>
+        </div>
+      </div>
+      <button type="button" class="btn-icono" id="btn-cerrar-borrar" aria-label="Cerrar"><svg class="ic"><use href="#i-x"/></svg></button>
+    </header>
+    <div class="dlg-cuerpo">
+      <p>¿Seguro que deseas eliminar permanentemente este expediente del archivo? Esta operación borra el registro de PostgreSQL y no se puede deshacer.</p>
+      <dl class="ficha mono">
+        <div><dt>PIEZA:</dt><dd id="b-titulo" class="claro"></dd></div>
+        <div><dt>ARTISTA:</dt><dd id="b-artista" class="oro"></dd></div>
+        <div><dt>FORMATO:</dt><dd id="b-formato" class="rosa"></dd></div>
+        <div><dt>EXPEDIENTE:</dt><dd id="b-codigo"></dd></div>
+      </dl>
+      <p id="borrar-msg" class="mensaje" role="alert"></p>
+    </div>
+    <footer class="dlg-pie dlg-pie-der">
+      <button id="btn-no-borrar" class="btn btn-secundario" type="button">Cancelar y mantener</button>
+      <button id="btn-si-borrar" class="btn btn-peligro" type="button"><svg class="ic"><use href="#i-trash"/></svg>Eliminar expediente</button>
+    </footer>
+  </dialog>
+
+  <!-- ===================== VEREDICTO RÁPIDO (PUT de estado + dictamen) ===================== -->
+  <dialog id="dlg-veredicto" class="dlg">
+    <form id="form-veredicto" method="dialog" novalidate>
+      <header class="dlg-cab">
+        <div>
+          <p class="eyebrow vino" id="v-eyebrow">VEREDICTO DEL COMITÉ</p>
+          <h2 id="v-titulo">Aprobar demo</h2>
+        </div>
+        <button type="button" class="btn-icono" id="btn-cerrar-veredicto" aria-label="Cerrar"><svg class="ic"><use href="#i-x"/></svg></button>
+      </header>
+      <div class="dlg-cuerpo">
+        <p id="v-obra" class="v-obra"></p>
+        <label class="campo full"><span>Dictamen para el artista *</span><textarea id="v-dictamen" rows="4" placeholder="Explica la decisión del comité…"></textarea></label>
+      </div>
+      <footer class="dlg-pie">
+        <div class="pie-estado"><p id="v-msg" class="mensaje" role="alert"></p></div>
+        <div class="pie-acciones">
+          <button type="button" class="btn btn-secundario" id="btn-cancelar-veredicto">Cancelar</button>
+          <button type="submit" class="btn btn-primario" id="btn-confirmar-veredicto">Aprobar</button>
+        </div>
+      </footer>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script src="js/app.js"></script>
 </body>

@@ -1,145 +1,122 @@
 package com.nuvoxrecords.backend.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 import com.nuvoxrecords.backend.entity.Demo;
-import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
-@ExtendWith(MockitoExtension.class)
-public class DemoRepositoryTest {
+/**
+ * Pruebas de la CAPA DE ACCESO A DATOS contra PostgreSQL real
+ * (base nuvox_records_test, ver src/test/resources/application.properties).
+ * Cada prueba se ejecuta en una transacción que se revierte al terminar.
+ */
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) // usar PostgreSQL, no una BD en memoria
+class DemoRepositoryTest {
 
-    @Mock
+    @Autowired
     private DemoRepository demoRepository;
 
-    private Demo demoBase;
+    // Permite forzar el SQL (flush) y vaciar la caché (clear) para leer de verdad desde la BD
+    @Autowired
+    private TestEntityManager em;
 
-    @BeforeEach
-    void setUp() {
-        demoBase = Demo.builder()
-                .id(1L)
-                .codigoExpediente("NVX-2024-089")
-                .tituloCancion("Nocturne in Obsidian, Op. 4")
+    private Demo nuevaDemo(String codigo, String titulo) {
+        return Demo.builder()
+                .codigoExpediente(codigo)
+                .tituloCancion(titulo)
                 .nombreArtistico("Arvo Valen")
                 .correoArtista("arvo.valen@estudio.com")
-                .generoMusical("Ambient Sonics & Droneworks")
-                .pais("España")
+                .generoMusical("Ambient Sonics")
+                .pais("Perú")
                 .bpm(118)
                 .tonalidad("D Minor")
                 .formatoAudio("WAV 24-bit / 96kHz")
-                .enlaceAudio("https://soundcloud.com/arvo-valen/nocturne-obsidian")
-                .notasArtista("Master analógico en cinta de 1/2 pulgada.")
-                .estadoCuratorial("EN_REVISION")
-                .dictamenComite("Pendiente de sesión en Salón 04.")
-                .fechaEnvio(LocalDateTime.now())
+                .enlaceAudio("https://soundcloud.com/arvo-valen/" + codigo.toLowerCase())
                 .build();
     }
 
-    // 1. Prueba de la operación INSERTAR
+    private void sincronizarConBd() {
+        em.flush();
+        em.clear();
+    }
+
     @Test
-    @DisplayName("1. Operación Insertar: Debe guardar una nueva Demo en el repositorio")
+    @DisplayName("1. Insertar: guarda la demo en PostgreSQL con id, fecha y estado inicial")
     void testInsertarDemo() {
-        when(demoRepository.save(any(Demo.class))).thenReturn(demoBase);
+        Demo guardada = demoRepository.save(nuevaDemo("TEST-001", "Nocturne in Obsidian"));
+        sincronizarConBd();
 
-        Demo resultado = demoRepository.save(demoBase);
-
-        assertNotNull(resultado);
-        assertEquals(1L, resultado.getId());
-        assertEquals("NVX-2024-089", resultado.getCodigoExpediente());
-        assertEquals("Nocturne in Obsidian, Op. 4", resultado.getTituloCancion());
-        verify(demoRepository, times(1)).save(demoBase);
+        assertNotNull(guardada.getId());
+        Demo enBd = demoRepository.findById(guardada.getId()).orElseThrow();
+        assertEquals("Nocturne in Obsidian", enBd.getTituloCancion());
+        assertEquals("EN_REVISION", enBd.getEstadoCuratorial()); // asignado por @PrePersist
+        assertNotNull(enBd.getFechaEnvio());
     }
 
-    // 2. Prueba de la operación ACTUALIZAR
     @Test
-    @DisplayName("2. Operación Actualizar: Debe modificar el estado curatorial y dictamen de una Demo")
+    @DisplayName("2. Actualizar: cambia el estado curatorial y el dictamen en PostgreSQL")
     void testActualizarDemo() {
-        when(demoRepository.findById(1L)).thenReturn(Optional.of(demoBase));
+        Long id = demoRepository.save(nuevaDemo("TEST-002", "Aura Caelestis")).getId();
+        sincronizarConBd();
 
-        Demo demoActualizada = Demo.builder()
-                .id(1L)
-                .codigoExpediente("NVX-2024-089")
-                .tituloCancion("Nocturne in Obsidian, Op. 4 (Master Final)")
-                .nombreArtistico("Arvo Valen")
-                .correoArtista("arvo.valen@estudio.com")
-                .generoMusical("Ambient Sonics & Droneworks")
-                .pais("España")
-                .bpm(118)
-                .tonalidad("D Minor")
-                .formatoAudio("WAV 24-bit / 96kHz")
-                .enlaceAudio("https://soundcloud.com/arvo-valen/nocturne-obsidian")
-                .estadoCuratorial("APROBADO")
-                .dictamenComite("Aprobado para prensado en Vinilo 180g.")
-                .fechaEnvio(demoBase.getFechaEnvio())
-                .build();
+        Demo aEditar = demoRepository.findById(id).orElseThrow();
+        aEditar.setTituloCancion("Aura Caelestis (Master Final)");
+        aEditar.setEstadoCuratorial("APROBADO");
+        aEditar.setDictamenComite("Aprobado para prensado en vinilo 180g.");
+        demoRepository.save(aEditar);
+        sincronizarConBd();
 
-        when(demoRepository.save(any(Demo.class))).thenReturn(demoActualizada);
-
-        Optional<Demo> encontrada = demoRepository.findById(1L);
-        assertTrue(encontrada.isPresent());
-
-        Demo guardada = demoRepository.save(demoActualizada);
-
-        assertNotNull(guardada);
-        assertEquals("APROBADO", guardada.getEstadoCuratorial());
-        assertEquals("Nocturne in Obsidian, Op. 4 (Master Final)", guardada.getTituloCancion());
-        verify(demoRepository, times(1)).findById(1L);
-        verify(demoRepository, times(1)).save(demoActualizada);
+        Demo actualizada = demoRepository.findById(id).orElseThrow();
+        assertEquals("Aura Caelestis (Master Final)", actualizada.getTituloCancion());
+        assertEquals("APROBADO", actualizada.getEstadoCuratorial());
+        assertEquals("Aprobado para prensado en vinilo 180g.", actualizada.getDictamenComite());
     }
 
-    // 3. Prueba de la operación ELIMINAR
     @Test
-    @DisplayName("3. Operación Eliminar: Debe eliminar una Demo existente por su ID")
+    @DisplayName("3. Eliminar: la demo deja de existir en PostgreSQL")
     void testEliminarDemo() {
-        Long idEliminar = 1L;
-        doNothing().when(demoRepository).deleteById(idEliminar);
+        Long id = demoRepository.save(nuevaDemo("TEST-003", "Boceto de Cuerdas")).getId();
+        sincronizarConBd();
+        assertTrue(demoRepository.existsById(id));
 
-        demoRepository.deleteById(idEliminar);
+        demoRepository.deleteById(id);
+        sincronizarConBd();
 
-        verify(demoRepository, times(1)).deleteById(idEliminar);
+        assertFalse(demoRepository.existsById(id));
     }
 
-    // 4. Prueba de la operación LISTAR
     @Test
-    @DisplayName("4. Operación Listar: Debe retornar la lista de todas las Demos registradas")
+    @DisplayName("4. Listar: devuelve todas las demos registradas")
     void testListarDemos() {
-        Demo segundaDemo = Demo.builder()
-                .id(2L)
-                .codigoExpediente("NVX-2024-041")
-                .tituloCancion("Aura Caelestis")
-                .nombreArtistico("Kaelen Stems")
-                .correoArtista("kaelen@estudio.com")
-                .generoMusical("Neo-Classical")
-                .pais("Alemania")
-                .formatoAudio("FLAC 24-bit / 48kHz")
-                .enlaceAudio("https://soundcloud.com/kaelen-stems/aura-caelestis")
-                .estadoCuratorial("APROBADO")
-                .fechaEnvio(LocalDateTime.now())
-                .build();
+        long antes = demoRepository.count();
+        demoRepository.save(nuevaDemo("TEST-004", "Resonancia Líquida"));
+        demoRepository.save(nuevaDemo("TEST-005", "Nocturne Op. 5"));
+        sincronizarConBd();
 
-        when(demoRepository.findAll()).thenReturn(Arrays.asList(demoBase, segundaDemo));
+        List<Demo> lista = demoRepository.findAll();
+        assertEquals(antes + 2, lista.size());
+        assertTrue(lista.stream().anyMatch(d -> "TEST-004".equals(d.getCodigoExpediente())));
+        assertTrue(lista.stream().anyMatch(d -> "TEST-005".equals(d.getCodigoExpediente())));
+    }
 
-        List<Demo> listaResultado = demoRepository.findAll();
+    @Test
+    @DisplayName("5. Buscar por código y por estado (consultas derivadas del repositorio)")
+    void testConsultasPersonalizadas() {
+        demoRepository.save(nuevaDemo("TEST-006", "Demo por código"));
+        sincronizarConBd();
 
-        assertNotNull(listaResultado);
-        assertEquals(2, listaResultado.size());
-        assertEquals("NVX-2024-089", listaResultado.get(0).getCodigoExpediente());
-        assertEquals("NVX-2024-041", listaResultado.get(1).getCodigoExpediente());
-        verify(demoRepository, times(1)).findAll();
+        assertTrue(demoRepository.findByCodigoExpediente("TEST-006").isPresent());
+        assertTrue(demoRepository.findByEstadoCuratorial("EN_REVISION").stream()
+                .anyMatch(d -> "TEST-006".equals(d.getCodigoExpediente())));
     }
 }

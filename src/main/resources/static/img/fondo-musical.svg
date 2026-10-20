@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+<defs><radialGradient id="bg" cx="50%" cy="50%" r="75%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" stop-color="#E6F0FB"/><stop offset="1" stop-color="#B9D3F0"/></radialGradient>
+<radialGradient id="lbl" cx="50%" cy="45%" r="60%"><stop offset="0" stop-color="#5FD4FF"/><stop offset=".7" stop-color="#1A9BE0"/><stop offset="1" stop-color="#0B6FAE"/></radialGradient>
+<radialGradient id="disc" cx="40%" cy="35%" r="75%"><stop offset="0" stop-color="#2B2F36"/><stop offset="1" stop-color="#0A0B0E"/></radialGradient>
+<g id="n1"><ellipse cx="0" cy="0" rx="9" ry="6.5" transform="rotate(-25)"/><rect x="7" y="-42" width="2.6" height="42"/></g>
+<g id="n2"><ellipse cx="0" cy="0" rx="9" ry="6.5" transform="rotate(-25)"/><ellipse cx="34" cy="-8" rx="9" ry="6.5" transform="rotate(-25 34 -8)"/><rect x="7" y="-42" width="2.6" height="42"/><rect x="41" y="-50" width="2.6" height="42"/><path d="M7 -42 L43.6 -50 L43.6 -42 L7 -34Z"/></g>
+<g id="n3"><ellipse cx="0" cy="0" rx="9" ry="6.5" transform="rotate(-25)"/><rect x="7" y="-42" width="2.6" height="42"/><path d="M9.6 -42 q14 8 10 26 q-2 -12 -10 -14z"/></g>
+</defs><rect width="100%" height="100%" fill="url(#bg)"/>
+<use href="#n3" transform="translate(1146 477) rotate(-30) scale(1.01)" fill="#3B5577" opacity="0.62"/>
+<use href="#n3" transform="translate(1182 469) rotate(-5) scale(0.58)" fill="#1E2A3A" opacity="0.38"/>
+<use href="#n3" transform="translate(1210 556) rotate(-19) scale(0.64)" fill="#1E2A3A" opacity="0.66"/>
+<use href="#n1" transform="translate(1125 595) rotate(4) scale(0.70)" fill="#1A9BE0" opacity="0.42"/>
+<use href="#n2" transform="translate(1159 633) rotate(13) scale(0.94)" fill="#2C3E57" opacity="0.40"/>
+<use href="#n2" transform="translate(1192 607) rotate(8) scale(0.95)" fill="#1A9BE0" opacity="0.60"/>
+<use href="#n1" transform="translate(1152 697) rotate(-18) scale(0.80)" fill="#2C3E57" opacity="0.44"/>
+<use href="#n1" transform="translate(1081 719) rotate(16) scale(1.16)" fill="#1E2A3A" opacity="0.49"/>
+<use href="#n3" transform="translate(1038 718) rotate(30) scale(0.79)" fill="#1E2A3A" opacity="0.56"/>
+<use href="#n1" transform="translate(1029 785) rotate(14) scale(0.77)" fill="#1A9BE0" opacity="0.65"/>
+<use href="#n3" transform="translate(932 824) rotate(11) scale(0.88)" fill="#3B5577" opacity="0.38"/>
+<use href="#n1" transform="translate(934 808) rotate(15) scale(0.86)" fill="#3B5577" opacity="0.79"/>
+<use href="#n1" transform="translate(808 804) rotate(-0) scale(0.98)" fill="#3B5577" opacity="0.46"/>
+<use href="#n3" transform="translate(804 810) rotate(-0) scale(1.19)" fill="#1A9BE0" opacity="0.43"/>
+<use href="#n3" transform="translate(852 793) rotate(4) scale(0.85)" fill="#3B5577" opacity="0.70"/>
+<use href="#n1" transform="translate(666 839) rotate(-23) scale(0.66)" fill="#2C3E57" opacity="0.47"/>
+<use href="#n3" transform="translate(713 825) rotate(-35) scale(0.73)" fill="#3B5577" opacity="0.56"/>
+<use href="#n2" transform="translate(635 837) rotate(1) scale(1.03)" fill="#1E2A3A" opacity="0.66"/>
+<use href="#n2" transform="translate(523 784) rotate(21) scale(1.16)" fill="#1A9BE0" opacity="0.55"/>
+<use href="#n1" transform="translate(646 823) rotate(-30) scale(0.59)" fill="#2C3E57" opacity="0.45"/>
+<use href="#n3" transform="translate(578 758) rotate(-24) scale(0.55)" fill="#3B5577" opacity="0.40"/>
+<use href="#n3" transform="translate(555 816) rotate(-25) scale(0.98)" fill="#3B5577" opacity="0.48"/>
+<use href="#n2" transform="translate(493 720) rotate(35) scale(1.14)" fill="#1A9BE0" opacity="0.58"/>
+<use href="#n3" transform="translate(500 728) rotate(-16) scale(0.79)" fill="#2C3E57" opacity="0.76"/>
+<use href="#n3" transform="translate(415 749) rotate(-25) scale(0.92)" fill="#1E2A3A" opacity="0.62"/>
+<use href="#n2" transform="translate(366 663) rotate(24) scale(0.61)" fill="#2C3E57" opacity="0.61"/>
+<use href="#n1" transform="translate(323 544) rotate(-12) scale(1.10)" fill="#2C3E57" opacity="0.46"/>
+<use href="#n1" transform="translate(296 496) rotate(1) scale(0.71)" fill="#1E2A3A" opacity="0.53"/>
+<use href="#n2" transform="translate(320 461) rotate(7) scale(0.69)" fill="#3B5577" opacity="0.52"/>
+<use href="#n2" transform="translate(351 545) rotate(-11) scale(0.88)" fill="#1E2A3A" opacity="0.59"/>
+<use href="#n3" transform="translate(357 366) rotate(23) scale(1.00)" fill="#1A9BE0" opacity="0.41"/>
+<use href="#n2" transform="translate(348 351) rotate(20) scale(0.67)" fill="#1A9BE0" opacity="0.52"/>
+<use href="#n3" transform="translate(292 360) rotate(-23) scale(1.06)" fill="#2C3E57" opacity="0.41"/>
+<use href="#n1" transform="translate(399 240) rotate(23) scale(0.65)" fill="#3B5577" opacity="0.84"/>
+<use href="#n2" transform="translate(423 287) rotate(33) scale(0.56)" fill="#2C3E57" opacity="0.67"/>
+<use href="#n3" transform="translate(531 202) rotate(-33) scale(1.16)" fill="#2C3E57" opacity="0.46"/>
+<use href="#n3" transform="translate(424 234) rotate(-31) scale(1.13)" fill="#1A9BE0" opacity="0.72"/>
+<use href="#n3" transform="translate(500 153) rotate(29) scale(0.84)" fill="#2C3E57" opacity="0.60"/>
+<use href="#n1" transform="translate(536 137) rotate(8) scale(1.09)" fill="#2C3E57" opacity="0.74"/>
+<use href="#n1" transform="translate(511 165) rotate(-31) scale(0.63)" fill="#1A9BE0" opacity="0.69"/>
+<use href="#n3" transform="translate(758 139) rotate(-32) scale(0.68)" fill="#1A9BE0" opacity="0.40"/>
+<use href="#n3" transform="translate(576 112) rotate(-12) scale(0.59)" fill="#2C3E57" opacity="0.84"/>
+<use href="#n3" transform="translate(710 107) rotate(1) scale(1.12)" fill="#3B5577" opacity="0.47"/>
+<use href="#n1" transform="translate(928 131) rotate(-6) scale(0.86)" fill="#3B5577" opacity="0.55"/>
+<use href="#n3" transform="translate(934 114) rotate(-14) scale(0.70)" fill="#2C3E57" opacity="0.41"/>
+<use href="#n2" transform="translate(984 127) rotate(-25) scale(0.73)" fill="#1E2A3A" opacity="0.58"/>
+<use href="#n2" transform="translate(1087 177) rotate(-19) scale(1.02)" fill="#1A9BE0" opacity="0.70"/>
+<use href="#n2" transform="translate(1041 139) rotate(-9) scale(0.61)" fill="#1A9BE0" opacity="0.52"/>
+<use href="#n1" transform="translate(1160 192) rotate(-14) scale(0.91)" fill="#1E2A3A" opacity="0.83"/>
+<use href="#n1" transform="translate(1232 275) rotate(-32) scale(0.74)" fill="#3B5577" opacity="0.74"/>
+<use href="#n3" transform="translate(1303 257) rotate(31) scale(1.02)" fill="#1A9BE0" opacity="0.55"/>
+<use href="#n1" transform="translate(1217 232) rotate(-22) scale(1.11)" fill="#3B5577" opacity="0.80"/>
+<use href="#n2" transform="translate(1344 306) rotate(25) scale(0.61)" fill="#1E2A3A" opacity="0.38"/>
+<use href="#n3" transform="translate(1298 220) rotate(29) scale(0.84)" fill="#1E2A3A" opacity="0.66"/>
+<use href="#n3" transform="translate(1413 412) rotate(-17) scale(1.23)" fill="#3B5577" opacity="0.44"/>
+<use href="#n1" transform="translate(1388 374) rotate(0) scale(0.75)" fill="#3B5577" opacity="0.44"/>
+<use href="#n1" transform="translate(1341 570) rotate(0) scale(0.56)" fill="#1A9BE0" opacity="0.84"/>
+<use href="#n3" transform="translate(1341 604) rotate(-5) scale(1.12)" fill="#1A9BE0" opacity="0.60"/>
+<use href="#n2" transform="translate(1372 522) rotate(-21) scale(0.71)" fill="#2C3E57" opacity="0.79"/>
+<use href="#n2" transform="translate(1367 731) rotate(-34) scale(1.14)" fill="#3B5577" opacity="0.66"/>
+<use href="#n3" transform="translate(1357 584) rotate(26) scale(1.14)" fill="#3B5577" opacity="0.69"/>
+<use href="#n2" transform="translate(1355 651) rotate(-24) scale(0.87)" fill="#3B5577" opacity="0.57"/>
+<use href="#n1" transform="translate(1248 856) rotate(-18) scale(0.93)" fill="#3B5577" opacity="0.83"/>
+<use href="#n1" transform="translate(1262 749) rotate(-2) scale(0.82)" fill="#2C3E57" opacity="0.60"/>
+<use href="#n2" transform="translate(1195 810) rotate(-29) scale(0.73)" fill="#1E2A3A" opacity="0.55"/>
+<use href="#n3" transform="translate(1271 784) rotate(6) scale(0.71)" fill="#2C3E57" opacity="0.61"/>
+<use href="#n1" transform="translate(1018 957) rotate(19) scale(0.97)" fill="#1A9BE0" opacity="0.71"/>
+<use href="#n3" transform="translate(1127 910) rotate(23) scale(0.65)" fill="#1A9BE0" opacity="0.71"/>
+<use href="#n3" transform="translate(935 961) rotate(18) scale(1.19)" fill="#1E2A3A" opacity="0.63"/>
+<use href="#n1" transform="translate(909 994) rotate(14) scale(1.03)" fill="#1E2A3A" opacity="0.46"/>
+<use href="#n3" transform="translate(972 949) rotate(24) scale(0.62)" fill="#1E2A3A" opacity="0.63"/>
+<use href="#n3" transform="translate(779 962) rotate(-3) scale(0.73)" fill="#1E2A3A" opacity="0.39"/>
+<use href="#n3" transform="translate(704 994) rotate(22) scale(0.88)" fill="#2C3E57" opacity="0.77"/>
+<use href="#n2" transform="translate(573 935) rotate(-3) scale(1.00)" fill="#1E2A3A" opacity="0.77"/>
+<use href="#n2" transform="translate(462 902) rotate(9) scale(0.58)" fill="#2C3E57" opacity="0.45"/>
+<use href="#n2" transform="translate(572 978) rotate(5) scale(0.76)" fill="#1E2A3A" opacity="0.36"/>
+<use href="#n2" transform="translate(498 953) rotate(12) scale(1.03)" fill="#3B5577" opacity="0.50"/>
+<use href="#n2" transform="translate(370 904) rotate(3) scale(1.25)" fill="#1E2A3A" opacity="0.51"/>
+<use href="#n2" transform="translate(447 922) rotate(33) scale(1.12)" fill="#3B5577" opacity="0.57"/>
+<use href="#n2" transform="translate(304 885) rotate(6) scale(0.70)" fill="#3B5577" opacity="0.42"/>
+<use href="#n2" transform="translate(273 854) rotate(27) scale(0.91)" fill="#2C3E57" opacity="0.70"/>
+<use href="#n2" transform="translate(135 623) rotate(-35) scale(0.57)" fill="#1A9BE0" opacity="0.60"/>
+<use href="#n2" transform="translate(203 703) rotate(-13) scale(0.79)" fill="#1E2A3A" opacity="0.77"/>
+<use href="#n2" transform="translate(78 552) rotate(30) scale(0.63)" fill="#3B5577" opacity="0.71"/>
+<use href="#n2" transform="translate(123 588) rotate(6) scale(1.25)" fill="#1A9BE0" opacity="0.53"/>
+<use href="#n1" transform="translate(129 411) rotate(11) scale(0.59)" fill="#2C3E57" opacity="0.67"/>
+<use href="#n1" transform="translate(142 324) rotate(19) scale(0.77)" fill="#1A9BE0" opacity="0.74"/>
+<use href="#n1" transform="translate(130 303) rotate(31) scale(1.19)" fill="#1E2A3A" opacity="0.62"/>
+<use href="#n1" transform="translate(199 228) rotate(-25) scale(0.98)" fill="#1A9BE0" opacity="0.78"/>
+<use href="#n3" transform="translate(226 178) rotate(-6) scale(0.67)" fill="#3B5577" opacity="0.49"/>
+<use href="#n1" transform="translate(226 161) rotate(-18) scale(0.83)" fill="#1A9BE0" opacity="0.59"/>
+<use href="#n2" transform="translate(191 255) rotate(28) scale(0.70)" fill="#2C3E57" opacity="0.60"/>
+<use href="#n1" transform="translate(369 25) rotate(-25) scale(0.86)" fill="#1E2A3A" opacity="0.45"/>
+<use href="#n3" transform="translate(320 129) rotate(-17) scale(0.72)" fill="#1E2A3A" opacity="0.63"/>
+<use href="#n2" transform="translate(526 4) rotate(-20) scale(1.07)" fill="#1E2A3A" opacity="0.49"/>
+<use href="#n1" transform="translate(376 14) rotate(0) scale(0.64)" fill="#2C3E57" opacity="0.66"/>
+<use href="#n1" transform="translate(477 24) rotate(-4) scale(0.83)" fill="#1E2A3A" opacity="0.83"/>
+<use href="#n1" transform="translate(450 -4) rotate(-2) scale(1.18)" fill="#1E2A3A" opacity="0.64"/>
+<use href="#n3" transform="translate(1037 -14) rotate(-24) scale(0.63)" fill="#1E2A3A" opacity="0.61"/>
+<use href="#n1" transform="translate(1038 -60) rotate(-29) scale(1.18)" fill="#1E2A3A" opacity="0.74"/>
+<use href="#n1" transform="translate(1159 12) rotate(-17) scale(0.64)" fill="#1E2A3A" opacity="0.67"/>
+<use href="#n1" transform="translate(1045 -44) rotate(-8) scale(0.96)" fill="#1E2A3A" opacity="0.46"/>
+<use href="#n2" transform="translate(1308 22) rotate(-13) scale(0.75)" fill="#2C3E57" opacity="0.77"/>
+<use href="#n1" transform="translate(1347 84) rotate(-6) scale(0.57)" fill="#1E2A3A" opacity="0.67"/>
+<use href="#n2" transform="translate(1338 42) rotate(-29) scale(1.00)" fill="#1A9BE0" opacity="0.46"/>
+<use href="#n1" transform="translate(1357 133) rotate(-6) scale(0.79)" fill="#2C3E57" opacity="0.69"/>
+<use href="#n1" transform="translate(1570 304) rotate(-21) scale(0.90)" fill="#3B5577" opacity="0.83"/>
+<use href="#n3" transform="translate(1475 225) rotate(-14) scale(1.08)" fill="#1A9BE0" opacity="0.83"/>
+<use href="#n2" transform="translate(1509 269) rotate(12) scale(0.84)" fill="#2C3E57" opacity="0.82"/>
+<use href="#n2" transform="translate(1508 297) rotate(-6) scale(0.97)" fill="#2C3E57" opacity="0.70"/>
+<use href="#n2" transform="translate(1625 462) rotate(-27) scale(0.77)" fill="#2C3E57" opacity="0.39"/>
+<use href="#n2" transform="translate(1623 451) rotate(-2) scale(0.92)" fill="#1A9BE0" opacity="0.51"/>
+<use href="#n1" transform="translate(1537 748) rotate(-30) scale(0.63)" fill="#1A9BE0" opacity="0.39"/>
+<use href="#n1" transform="translate(1598 700) rotate(19) scale(0.82)" fill="#1A9BE0" opacity="0.50"/>
+<use href="#n3" transform="translate(1607 609) rotate(29) scale(0.81)" fill="#3B5577" opacity="0.45"/>
+<use href="#n2" transform="translate(1391 880) rotate(22) scale(0.84)" fill="#1E2A3A" opacity="0.73"/>
+<use href="#n2" transform="translate(1529 725) rotate(-17) scale(1.19)" fill="#3B5577" opacity="0.72"/>
+<use href="#n2" transform="translate(1510 879) rotate(-17) scale(0.98)" fill="#3B5577" opacity="0.71"/>
+<use href="#n1" transform="translate(1429 932) rotate(21) scale(0.97)" fill="#1E2A3A" opacity="0.82"/>
+<use href="#n2" transform="translate(1148 1037) rotate(-2) scale(1.05)" fill="#3B5577" opacity="0.74"/>
+<use href="#n3" transform="translate(1106 1050) rotate(-14) scale(1.20)" fill="#2C3E57" opacity="0.70"/>
+<use href="#n1" transform="translate(267 995) rotate(34) scale(0.84)" fill="#2C3E57" opacity="0.84"/>
+<use href="#n2" transform="translate(58 831) rotate(19) scale(0.93)" fill="#3B5577" opacity="0.73"/>
+<use href="#n1" transform="translate(154 935) rotate(-17) scale(0.73)" fill="#2C3E57" opacity="0.57"/>
+<use href="#n1" transform="translate(101 893) rotate(-22) scale(1.19)" fill="#3B5577" opacity="0.38"/>
+<use href="#n1" transform="translate(-7 754) rotate(11) scale(1.12)" fill="#1E2A3A" opacity="0.85"/>
+<use href="#n1" transform="translate(-54 698) rotate(-22) scale(0.63)" fill="#2C3E57" opacity="0.84"/>
+<use href="#n1" transform="translate(23 155) rotate(-25) scale(0.81)" fill="#3B5577" opacity="0.45"/>
+<use href="#n1" transform="translate(38 80) rotate(-34) scale(0.69)" fill="#3B5577" opacity="0.51"/>
+<use href="#n1" transform="translate(148 40) rotate(-0) scale(0.57)" fill="#1A9BE0" opacity="0.59"/>
+<use href="#n3" transform="translate(105 20) rotate(-7) scale(1.01)" fill="#3B5577" opacity="0.49"/>
+<use href="#n1" transform="translate(1506 -55) rotate(9) scale(0.61)" fill="#2C3E57" opacity="0.54"/>
+<use href="#n2" transform="translate(1436 -37) rotate(-30) scale(0.67)" fill="#2C3E57" opacity="0.54"/>
+<use href="#n3" transform="translate(1623 21) rotate(28) scale(0.82)" fill="#2C3E57" opacity="0.66"/>
+<path d="M-50 820 C 400 700, 900 960, 1650 780" stroke="#2C3E57" stroke-width="1.2" fill="none" opacity=".25"/>
+<path d="M-50 150 C 500 40, 1100 260, 1650 110" stroke="#2C3E57" stroke-width="1.2" fill="none" opacity=".2"/>
+<path d="M-50 829 C 400 709, 900 969, 1650 789" stroke="#2C3E57" stroke-width="1.2" fill="none" opacity=".25"/>
+<path d="M-50 159 C 500 49, 1100 269, 1650 119" stroke="#2C3E57" stroke-width="1.2" fill="none" opacity=".2"/>
+<path d="M-50 838 C 400 718, 900 978, 1650 798" stroke="#2C3E57" stroke-width="1.2" fill="none" opacity=".25"/>
+<path d="M-50 168 C 500 58, 1100 278, 1650 128" stroke="#2C3E57" stroke-width="1.2" fill="none" opacity=".2"/>
+<path d="M-50 847 C 400 727, 900 987, 1650 807" stroke="#2C3E57" stroke-width="1.2" fill="none" opacity=".25"/>
+<path d="M-50 177 C 500 67, 1100 287, 1650 137" stroke="#2C3E57" stroke-width="1.2" fill="none" opacity=".2"/>
+<path d="M-50 856 C 400 736, 900 996, 1650 816" stroke="#2C3E57" stroke-width="1.2" fill="none" opacity=".25"/>
+<path d="M-50 186 C 500 76, 1100 296, 1650 146" stroke="#2C3E57" stroke-width="1.2" fill="none" opacity=".2"/>
+</svg>

@@ -8,7 +8,7 @@ RUN ./mvnw -B -q clean package -DskipTests
 
 FROM eclipse-temurin:17-jre
 WORKDIR /app
-COPY --from=build /app/target/nuvox-records-backend-1.0.0.jar app.jar
+COPY --from=build /app/target/*.jar app.jar
 ENV JAVA_OPTS="-Xmx384m"
 EXPOSE 8080
 CMD ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
