@@ -42,7 +42,7 @@ async function api(ruta, opciones = {}) {
   let cuerpo = null;
   try { cuerpo = await resp.json(); } catch (_) { /* respuesta sin cuerpo */ }
   if (resp.status === 401 && sesion && !opciones.sinAuth) {
-    cerrarSesion();
+    finalizarSesion();
     throw new Error('Tu sesión expiró. Ingresa de nuevo.');
   }
   if (resp.status === 403) throw new Error('No tienes permisos para esta acción.');
@@ -140,7 +140,9 @@ $('form-login').onsubmit = async (e) => {
   const pass = $('login-pass').value;
   if (!user || !pass) return mostrar('login-msg', 'Ingresa tu correo y tu clave de acceso.');
   const btn = $('btn-login');
+  const etiquetaAnterior = btn.textContent;
   btn.disabled = true;
+  btn.textContent = 'Enviando…';
   try {
     const r = await api('/api/auth/login', { method: 'POST', sinAuth: true, body: JSON.stringify({ username: user, password: pass }) });
     // El backend devuelve el rol: verificamos que coincida con el botón elegido
@@ -169,7 +171,9 @@ $('form-registro').onsubmit = async (e) => {
   if (!nombre || !correo || !pass) return mostrar('login-msg', 'Completa todos los campos.');
   if (pass.length < 8) return mostrar('login-msg', 'La contraseña debe tener al menos 8 caracteres.');
   const btn = $('btn-registro');
+  const etiquetaAnterior = btn.textContent;
   btn.disabled = true;
+  btn.textContent = 'Enviando…';
   try {
     await api('/api/auth/registro', {
       method: 'POST', sinAuth: true,
@@ -185,34 +189,46 @@ $('form-registro').onsubmit = async (e) => {
   } finally { btn.disabled = false; }
 };
 
-function cerrarSesion() {
+function finalizarSesion() {
+  const dlg = $('dlg-salir');
+  if (dlg.open) dlg.close();
   sesion = null;
   demos = [];
   guardarSesion(null);
   $('vista-panel').classList.add('oculto');
-  $('vista-login').classList.remove('oculto');
+  $('vista-inicio').classList.remove('oculto');
+  $('vista-login').classList.add('oculto');
   $('rail').classList.remove('abierto');
 }
+function cerrarSesion() {
+  const dlg = $('dlg-salir');
+  if (!dlg.open) dlg.showModal();
+}
 $('btn-logout').onclick = cerrarSesion;
+$('salir-cancelar').onclick = () => $('dlg-salir').close();
+$('salir-confirmar').onclick = finalizarSesion;
+$('dlg-salir').addEventListener('click', event => {
+  if (event.target === $('dlg-salir')) $('dlg-salir').close();
+});
 
 /* ---------------- Panel ---------------- */
 // Menú por rol: el artista NO ve las opciones de curaduría
 const MENU = {
   comite: [
-    { titulo: 'Curaduría' },
+    { titulo: 'Demos' },
     { id: 'dashboard', texto: 'Dashboard', icono: 'i-grid' },
     { id: 'catalogo', texto: 'Catálogo de demos', icono: 'i-disc' },
-    { titulo: 'Revisión A&R' },
+    { titulo: 'A&R' },
     { id: 'evaluacion', texto: 'En evaluación', icono: 'i-clock', cuenta: 'EN_REVISION' },
     { id: 'aprobadas', texto: 'Aprobadas', icono: 'i-check' },
     { id: 'rechazadas', texto: 'Devoluciones', icono: 'i-return' },
     { titulo: 'Acciones' },
-    { id: 'nueva', texto: 'Registrar nueva demo', icono: 'i-plus' }
+    { id: 'nueva', texto: 'Enviar demo', icono: 'i-plus' }
   ],
   artista: [
     { titulo: 'Portal artista' },
     { id: 'mis-demos', texto: 'Mis demos', icono: 'i-disc' },
-    { id: 'nueva', texto: 'Registrar nueva demo', icono: 'i-plus' },
+    { id: 'nueva', texto: 'Enviar demo', icono: 'i-plus' },
     { id: 'criterios', texto: 'Criterios de envío', icono: 'i-book' }
   ]
 };
@@ -220,7 +236,7 @@ const MENU = {
 // Cada vista define su encabezado y qué demos muestra
 const VISTAS = {
   dashboard:  { eyebrow: 'Dashboard', titulo: 'Dashboard', sec: '// Comité A&R', sub: 'Resumen del archivo: pendientes, últimos envíos y de dónde llegan las demos.', panel: 'v-dashboard', metricas: true },
-  catalogo:   { eyebrow: 'Curaduría', titulo: 'Catálogo de demos', sec: '// Comité A&R', sub: 'Todos los expedientes recibidos. Busca, filtra por estado, edita o elimina.', lista: 'Expedientes de audio', filtro: true, metricas: true, ver: () => true },
+  catalogo:   { eyebrow: 'Curaduría', titulo: 'Catálogo de demos', sec: '// Comité A&R', sub: 'Todos los expedientes recibidos. Busca, filtra por estado, edita o elimina.', lista: 'Demos', filtro: true, metricas: true, ver: () => true },
   evaluacion: { eyebrow: 'Revisión A&R', titulo: 'En evaluación', sec: '// Mesa del comité', sub: 'Demos pendientes de dictamen. Escúchalas y apruébalas o recházalas con un comentario.', lista: 'Pendientes de dictamen', rapido: true, ver: (d) => d.estadoCuratorial === 'EN_REVISION' },
   aprobadas:  { eyebrow: 'Revisión A&R', titulo: 'Aprobadas', sec: '// Listas para catálogo', sub: 'Demos aprobadas por el comité, con su dictamen editorial.', lista: 'Demos aprobadas', ver: (d) => d.estadoCuratorial === 'APROBADO' },
   rechazadas: { eyebrow: 'Revisión A&R', titulo: 'Devoluciones', sec: '// Rechazadas', sub: 'Demos rechazadas y la devolución que recibió cada artista.', lista: 'Demos rechazadas', ver: (d) => d.estadoCuratorial === 'RECHAZADO' },
@@ -231,6 +247,7 @@ let vista = 'catalogo';
 
 function iniciarPanel() {
   const comite = esComite();
+  $('vista-inicio').classList.add('oculto');
   $('vista-login').classList.add('oculto');
   $('vista-panel').classList.remove('oculto');
   $('usuario-nombre').textContent = sesion.nombre || sesion.username;
@@ -327,7 +344,7 @@ function pintar() {
       evaluacion: ['Mesa al día', 'No hay demos pendientes de dictamen.'],
       aprobadas: ['Sin aprobaciones todavía', 'Las demos que apruebes aparecerán aquí.'],
       rechazadas: ['Sin devoluciones', 'Las demos rechazadas aparecerán aquí con su dictamen.'],
-      'mis-demos': ['Aún no enviaste demos', 'Usa "Registrar nueva demo" en el menú para enviar la primera.']
+      'mis-demos': ['Aún no enviaste demos', 'Usa "Enviar demo" en el menú para enviar la primera.']
     };
     const [t, d] = (q || est) ? ['Sin coincidencias', 'Prueba con otra búsqueda o estado.'] : (textos[vista] || ['Aún no hay expedientes', 'Registra la primera desde el menú.']);
     vacio.append(el('strong', null, t), el('span', null, d));
@@ -477,14 +494,16 @@ $('form-veredicto').onsubmit = async (e) => {
     estadoCuratorial: estado, dictamenComite: dictamen
   };
   const btn = $('btn-confirmar-veredicto');
+  const etiquetaAnterior = btn.textContent;
   btn.disabled = true;
+  btn.textContent = 'Enviando…';
   try {
     await api(`/api/demos/${d.id}`, { method: 'PUT', body: JSON.stringify(cuerpo) });
     dlgVer.close();
     toast(estado === 'APROBADO' ? `"${d.tituloCancion}" aprobada.` : `"${d.tituloCancion}" rechazada.`);
     await cargar();
   } catch (err) { mostrar('v-msg', err.message); }
-  finally { btn.disabled = false; }
+  finally { btn.disabled = false; btn.textContent = etiquetaAnterior; }
 };
 
 /* ---------------- Navegación móvil ---------------- */
@@ -502,9 +521,9 @@ $('btn-cerrar-demo').onclick = () => dlg.close();
 function abrirForm(d) {
   editandoId = d ? d.id : null;
   const comite = esComite();
-  $('dlg-eyebrow').textContent = d ? `EXPEDIENTE #${d.codigoExpediente}` : 'INGESTA A&R // NUEVO EXPEDIENTE';
-  $('dlg-titulo').textContent = d ? 'Editar y dictaminar demo' : 'Registrar nueva demo';
-  $('btn-guardar').textContent = d ? 'Guardar cambios' : (comite ? 'Registrar expediente' : 'Enviar al comité');
+  $('dlg-eyebrow').textContent = d ? `A&R / ${d.codigoExpediente}` : 'A&R / ENVÍO DE DEMOS';
+  $('dlg-titulo').textContent = d ? 'Editar demo' : 'Enviar demo';
+  $('btn-guardar').textContent = d ? 'Guardar cambios' : 'Enviar demo';
   $('form-demo').reset();
   mostrar('demo-msg', '');
   $('bloque-comite').classList.toggle('oculto', !comite);
@@ -516,7 +535,7 @@ function abrirForm(d) {
   $('f-correo').readOnly = !comite; // un artista siempre envía con su propio correo
   $('f-genero').value = v.generoMusical || '';
   $('f-pais').value = v.pais || '';
-  $('f-formato').value = v.formatoAudio || '';
+  $('f-formato').value = v.formatoAudio || 'Enlace digital';
   $('f-bpm').value = v.bpm ?? '';
   $('f-tono').value = v.tonalidad || '';
   $('f-enlace').value = v.enlaceAudio || '';
@@ -531,7 +550,7 @@ function abrirForm(d) {
 // Validación en el navegador (el backend vuelve a validar todo con @Valid)
 function validarForm() {
   const obligatorios = [['f-titulo', 'el título'], ['f-artista', 'el nombre artístico'], ['f-correo', 'el correo'],
-    ['f-genero', 'el género'], ['f-pais', 'el país'], ['f-formato', 'el formato de audio'], ['f-enlace', 'el enlace de la demo']];
+    ['f-genero', 'el género'], ['f-pais', 'el país'], ['f-enlace', 'el enlace de la demo']];
   for (const [id, nombre] of obligatorios) {
     if (!$(id).value.trim()) { $(id).focus(); return `Falta completar ${nombre}.`; }
   }
@@ -566,19 +585,21 @@ $('form-demo').onsubmit = async (e) => {
   }
 
   const btn = $('btn-guardar');
+  const etiquetaAnterior = btn.textContent;
   btn.disabled = true;
+  btn.textContent = 'Enviando…';
   try {
     if (editandoId) {
       await api(`/api/demos/${editandoId}`, { method: 'PUT', body: JSON.stringify(cuerpo) });
-      toast('Expediente actualizado.');
+      toast('Los cambios se guardaron correctamente.');
     } else {
       const nueva = await api('/api/demos', { method: 'POST', body: JSON.stringify(cuerpo) });
-      toast(`Demo registrada con el código ${nueva.codigoExpediente}.`);
+      toast(`Demo enviada correctamente. Código: ${nueva.codigoExpediente}.`);
     }
     dlg.close();
     await cargar();
   } catch (err) { errorForm(err.message); }
-  finally { btn.disabled = false; }
+  finally { btn.disabled = false; btn.textContent = etiquetaAnterior; }
 };
 
 // El error se muestra en el pie del diálogo, que siempre está visible
@@ -602,7 +623,9 @@ $('btn-cerrar-borrar').onclick = () => dlgBorrar.close();
 $('btn-si-borrar').onclick = async () => {
   if (!porBorrar) return;
   const btn = $('btn-si-borrar');
+  const etiquetaAnterior = btn.textContent;
   btn.disabled = true;
+  btn.textContent = 'Enviando…';
   try {
     await api(`/api/demos/${porBorrar.id}`, { method: 'DELETE' });
     dlgBorrar.close();
@@ -610,7 +633,7 @@ $('btn-si-borrar').onclick = async () => {
     porBorrar = null;
     await cargar();
   } catch (err) { mostrar('borrar-msg', err.message); }
-  finally { btn.disabled = false; }
+  finally { btn.disabled = false; btn.textContent = etiquetaAnterior; }
 };
 
 /* ---------------- Arranque ---------------- */

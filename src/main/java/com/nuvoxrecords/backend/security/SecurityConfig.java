@@ -1,6 +1,5 @@
 package com.nuvoxrecords.backend.security;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -16,8 +15,11 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
 public class SecurityConfig {
+    public SecurityConfig(UserDetailsServiceImpl userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+
 
     private final UserDetailsServiceImpl userDetailsService;
 
@@ -47,6 +49,7 @@ public class SecurityConfig {
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/public/demos").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/demos/**").authenticated()
                 .requestMatchers(HttpMethod.POST, "/api/demos/**").authenticated()
                 .requestMatchers(HttpMethod.PUT, "/api/demos/**").hasAuthority("ROLE_COMITE_AR")

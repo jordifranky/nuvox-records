@@ -9,10 +9,6 @@ import jakarta.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
@@ -24,9 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "*")
-@RequiredArgsConstructor
 public class AuthController {
+    public AuthController(AuthService authService) {
+        this.authService = authService;
+    }
+
 
     private final AuthService authService;
 
@@ -69,9 +67,8 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
+
+
     public static class RegistroRequest {
         @NotBlank(message = "El correo es obligatorio")
         @Email(message = "Debe ser un correo válido")
@@ -84,16 +81,38 @@ public class AuthController {
         @NotBlank(message = "El nombre completo es obligatorio")
         @Size(max = 120, message = "El nombre admite máximo 120 caracteres")
         private String nombreCompleto;
-    }
+    
+        public RegistroRequest() {}
+        public RegistroRequest(String username, String password, String nombreCompleto) {
+            this.username = username;
+            this.password = password;
+            this.nombreCompleto = nombreCompleto;
+        }
+        public String getUsername() { return username; }
+        public void setUsername(String value) { this.username = value; }
+        public String getPassword() { return password; }
+        public void setPassword(String value) { this.password = value; }
+        public String getNombreCompleto() { return nombreCompleto; }
+        public void setNombreCompleto(String value) { this.nombreCompleto = value; }
+}
 
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
+
+
     public static class LoginRequest {
         @NotBlank(message = "El usuario o correo electrónico es obligatorio")
         private String username;
 
         @NotBlank(message = "La clave de acceso es obligatoria")
         private String password;
-    }
+    
+        public LoginRequest() {}
+        public LoginRequest(String username, String password) {
+            this.username = username;
+            this.password = password;
+        }
+        public String getUsername() { return username; }
+        public void setUsername(String value) { this.username = value; }
+        public String getPassword() { return password; }
+        public void setPassword(String value) { this.password = value; }
+}
 }

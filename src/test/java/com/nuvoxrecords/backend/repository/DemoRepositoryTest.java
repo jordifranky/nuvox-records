@@ -12,13 +12,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 /**
  * Pruebas de la CAPA DE ACCESO A DATOS contra PostgreSQL real
- * (base nuvox_records_test, ver src/test/resources/application.properties).
+ * (base nuvox_records_test, ver src/test/resources/application-test.properties).
  * Cada prueba se ejecuta en una transacción que se revierte al terminar.
  */
+@ActiveProfiles("test")
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) // usar PostgreSQL, no una BD en memoria
 class DemoRepositoryTest {

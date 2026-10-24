@@ -3,7 +3,6 @@ package com.nuvoxrecords.backend.security;
 import com.nuvoxrecords.backend.entity.Usuario;
 import com.nuvoxrecords.backend.repository.UsuarioRepository;
 import java.util.Collections;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,8 +11,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
+    public UserDetailsServiceImpl(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
+
 
     private final UsuarioRepository usuarioRepository;
 

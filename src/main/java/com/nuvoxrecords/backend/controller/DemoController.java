@@ -6,7 +6,6 @@ import jakarta.validation.Valid;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -22,9 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/demos")
-@CrossOrigin(origins = "*")
-@RequiredArgsConstructor
 public class DemoController {
+    public DemoController(DemoService demoService) {
+        this.demoService = demoService;
+    }
+
 
     private final DemoService demoService;
 

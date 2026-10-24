@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nuvox Records · Plataforma Curatorial A&amp;R</title>
-  <meta name="description" content="Nuvox Records: envía tu demo con un enlace de SoundCloud o Dropbox y sigue su estado curatorial.">
+  <title>Nuvox Records · Envío de demos y revisión A&amp;R</title>
+  <meta name="description" content="Nuvox Records: envía tu demo con un enlace de SoundCloud o Dropbox y sigue su estado musical.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -33,8 +33,51 @@
     <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
   </svg>
 
+
+  <!-- Portada pública: inspirada en la guía Stitch; todos los envíos van a PostgreSQL. -->
+  <div id="vista-inicio" class="home-view">
+    <header class="home-header">
+      <a href="#inicio" class="home-brand" aria-label="Nuvox Records, inicio"><span class="home-brand-icon">◉</span><span>NUVOX <b>RECORDS</b><small>INDEPENDENT MUSIC · A&amp;R</small></span></a>
+      <nav aria-label="Navegación pública"><a href="#proceso">Cómo funciona</a><a href="#requisitos">Requisitos</a><button type="button" id="home-acceso" class="btn btn-outline">Acceder</button><button type="button" id="home-enviar-nav" class="btn btn-primario">Enviar demo →</button></nav>
+    </header>
+    <main id="inicio">
+      <section class="home-hero">
+        <div class="home-hero-copy"><p class="eyebrow vino">NUVOX RECORDS / ENVÍO DE DEMOS</p><h1>Tu próximo sonido<br><em>comienza aquí.</em></h1><p>Escuchamos nuevas propuestas musicales. Comparte un enlace de tu demo para que nuestro equipo A&amp;R pueda evaluarla.</p><div class="home-actions"><button type="button" id="home-enviar" class="btn btn-primario">Enviar mi demo ↗</button><a href="#proceso" class="btn btn-secundario">Conoce el proceso ↓</a></div><div class="home-hero-note">Solo enlaces de SoundCloud o Dropbox · Sin archivos adjuntos</div></div>
+        <div class="home-art" aria-hidden="true"><div class="home-art-label">NUVOX / A&amp;R SESSIONS</div><div class="home-vinyl"><div class="home-vinyl-center">NVX<br><small>RECORDS</small></div></div><div class="home-art-bottom"><span>DESCUBRE NUEVOS SONIDOS</span><span>◉ · ◉ · ◉</span></div></div>
+      </section>
+      <div class="home-strip"><span>ESCUCHAMOS TU PROPUESTA</span><span>•</span><span>ENVÍA TU MÚSICA</span><span>•</span><span>RECIBE UNA RESPUESTA</span></div>
+      <section class="home-section" id="proceso"><div class="home-section-heading"><p class="eyebrow vino">CÓMO FUNCIONA</p><h2>Así recibimos tu música</h2><p>Un proceso claro para presentar tu obra al equipo musical.</p></div><div class="home-steps"><article><span>01 /</span><h3>Prepara tu enlace</h3><p>Sube tu música a SoundCloud o Dropbox y comprueba que el enlace esté disponible para escuchar.</p></article><article><span>02 /</span><h3>Envía tu demo</h3><p>Completa tus datos y recibe un código de seguimiento al registrar tu envío.</p></article><article><span>03 /</span><h3>Revisión A&amp;R</h3><p>Nuestro equipo evalúa las demos registradas. Puedes consultar el estado desde tu cuenta de artista.</p></article></div></section>
+      <section class="home-section home-bottom" id="requisitos"><div><p class="eyebrow vino">ANTES DE ENVIAR</p><h2>Deja que tu música hable.</h2><p>Necesitarás el título, nombre artístico, correo, género, país y un enlace válido de SoundCloud o Dropbox.</p></div><button type="button" id="home-enviar-footer" class="btn btn-primario">Enviar demo →</button></section>
+    </main>
+    <footer class="home-footer"><span>© NUVOX RECORDS · A&amp;R</span><span>Un espacio para nuevas propuestas musicales</span></footer>
+  </div>
+
+  <dialog id="dlg-publico" class="public-dialog">
+    <form id="form-publico">
+      <div class="public-dialog-head"><div><p class="eyebrow vino">ENVÍO DE DEMOS · NUVOX RECORDS</p><h2>Comparte tu música</h2><p>Ingresa tus datos y el enlace de tu demo.</p></div><button id="public-cerrar" type="button" class="btn-icono" aria-label="Cerrar">✕</button></div>
+      <div id="public-fields" class="public-fields">
+        <label class="campo"><span>Título de la canción *</span><input name="tituloCancion" required maxlength="150" placeholder="Nombre de tu canción"></label>
+        <label class="campo"><span>Nombre artístico *</span><input name="nombreArtistico" required maxlength="120" placeholder="Tu nombre artístico"></label>
+        <label class="campo"><span>Correo electrónico *</span><input name="correoArtista" required maxlength="120" type="email" placeholder="nombre@correo.com"></label>
+        <label class="campo"><span>Género musical *</span><input name="generoMusical" required maxlength="80" placeholder="Ej. Electrónica"></label>
+        <label class="campo"><span>País *</span><input name="pais" required maxlength="60" placeholder="Ej. Perú"></label>
+        <label class="campo"><span>Enlace de tu demo *</span><input name="enlaceAudio" required maxlength="500" type="url" pattern="https://.*" placeholder="https://soundcloud.com/..."></label>
+        <label class="campo public-wide"><span>Comentarios (opcional)</span><textarea name="notasArtista" maxlength="2000" rows="3" placeholder="Cuéntanos brevemente sobre tu proyecto"></textarea></label>
+      </div>
+      <p id="public-msg" class="mensaje" role="status" aria-live="polite"></p>
+      <section id="public-exito" class="public-exito oculto" aria-live="polite">
+        <span class="public-exito-icon" aria-hidden="true">✓</span>
+        <h3>Tu demo se envió correctamente</h3>
+        <p>Recibimos tu propuesta. Conserva el código para identificarla:</p>
+        <p id="public-codigo" class="public-codigo"></p>
+        <div class="public-dialog-actions"><button type="button" id="public-nuevo" class="btn btn-primario">Enviar otra demo</button><button type="button" id="public-listo" class="btn btn-secundario">Cerrar</button></div>
+      </section>
+      <div id="public-form-actions" class="public-dialog-actions"><button type="button" id="public-cancelar" class="btn btn-secundario">Cancelar</button><button type="submit" id="public-submit" class="btn btn-primario">Enviar</button></div>
+    </form>
+  </dialog>
+
   <!-- ===================== ACCESO ===================== -->
-  <main id="vista-login" class="acceso">
+  <main id="vista-login" class="acceso oculto">
     <aside class="acceso-marca" aria-hidden="true">
       <h1 class="logo-grande">NUVOX<br>RECORDS</h1>
       <p class="mono acento-oro">A&amp;R CURATORIAL &amp; ARTIST PLATFORM</p>
@@ -45,11 +88,11 @@
           <circle cx="50" cy="14" r="2.4" fill="#C2A878"/><circle cx="150" cy="24" r="2.4" fill="#C2A878"/>
         </svg>
       </div>
-      <p class="acceso-texto"><strong>Tu música merece ser escuchada.</strong> Comparte tu demo, sigue su camino paso a paso y deja que el comité A&amp;R descubra tu sonido.</p>
+      <p class="acceso-texto"><strong>Tu música merece ser escuchada.</strong> Comparte tu demo, sigue su camino paso a paso y deja que el equipo A&amp;R descubra tu sonido.</p>
     </aside>
 
     <section class="acceso-card">
-      <p class="eyebrow vino" id="acceso-eyebrow">CREDENCIAL DE ENTRADA</p>
+      <p class="eyebrow vino" id="acceso-eyebrow">ACCESO A NUVOX</p>
       <h2 class="acceso-titulo" id="acceso-titulo">Acceso</h2>
 
       <div class="segmento" role="tablist" id="segmento-rol">
@@ -100,7 +143,7 @@
         <svg class="ic"><use href="#i-disc"/></svg>
         <span>NUVOX <em>RECORDS</em></span>
       </div>
-      <div class="rol-chip mono" id="rol-chip">COMITÉ A&amp;R</div>
+      <div class="rol-chip mono" id="rol-chip">EQUIPO A&amp;R</div>
 
       <!-- El menú se arma en app.js según el rol (comité o artista) -->
       <nav class="rail-nav" id="rail-nav" aria-label="Menú principal"></nav>
@@ -118,7 +161,7 @@
     <div class="principal">
       <header class="topbar">
         <button id="btn-menu" class="btn-icono solo-movil" type="button" aria-label="Menú"><svg class="ic"><use href="#i-menu"/></svg></button>
-        <div class="estado-sistema mono"><span class="punto vivo"></span><span id="estado-txt">ARCHIVO ACTIVO</span></div>
+        <div class="estado-sistema mono"><span class="punto vivo"></span><span id="estado-txt">NUVOX RECORDS</span></div>
         <label class="buscador">
           <svg class="ic"><use href="#i-search"/></svg>
           <input id="buscar" type="search" placeholder="Buscar por título, artista o código…" aria-label="Buscar">
@@ -128,7 +171,7 @@
       <main class="contenido">
         <div class="encabezado">
           <p class="eyebrow"><span class="punto"></span><span id="eyebrow-panel">DASHBOARD</span></p>
-          <h1><span id="titulo-panel">Expedientes de demos</span> <span class="titulo-sec" id="titulo-sec">// Comité A&amp;R</span></h1>
+          <h1><span id="titulo-panel">Demos recibidas</span> <span class="titulo-sec" id="titulo-sec">// Equipo A&amp;R</span></h1>
           <p id="subtitulo-panel" class="sub"></p>
         </div>
 
@@ -136,10 +179,10 @@
           <div class="metrica"><small>Demos entregadas</small><p><b class="mono" id="stat-total">00</b><span>obras</span></p><em>Histórico total registrado</em></div>
           <div class="metrica rev"><small>En revisión</small><p><b class="mono" id="stat-rev">00</b><span>en mesa</span></p><em>Pendientes de dictamen</em></div>
           <div class="metrica apr"><small>Aprobadas</small><p><b class="mono" id="stat-apr">00</b><span>aprobadas</span></p><em>Listas para catálogo</em></div>
-          <div class="metrica rec"><small>Rechazadas</small><p><b class="mono" id="stat-rec">00</b><span>archivadas</span></p><em>Con devolución del comité</em></div>
+          <div class="metrica rec"><small>Rechazadas</small><p><b class="mono" id="stat-rec">00</b><span>archivadas</span></p><em>Con devolución del equipo</em></div>
         </section>
 
-        <!-- Vista: Dashboard curatorial (solo comité) -->
+        <!-- Vista: Dashboard musical (solo comité) -->
         <section id="v-dashboard" class="vista oculto">
           <button type="button" class="aviso-pendientes" id="dash-pendientes"></button>
           <div class="dash-grid">
@@ -162,19 +205,19 @@
         <section id="v-criterios" class="vista oculto">
           <div class="criterios">
             <article class="bloque-panel"><h2>Formato de audio</h2><p>Envía tu mezcla en WAV o FLAC (24-bit recomendado). Los MP3 se aceptan solo como boceto.</p></article>
-            <article class="bloque-panel"><h2>Enlace de escucha</h2><p>Comparte un enlace https de SoundCloud (puede ser privado) o de Dropbox. No subas archivos: el comité escucha desde tu enlace.</p></article>
+            <article class="bloque-panel"><h2>Enlace de tu demo</h2><p>Comparte un enlace https de SoundCloud (puede ser privado) o de Dropbox. No subas archivos: el equipo escucha desde tu enlace.</p></article>
             <article class="bloque-panel"><h2>Datos de la obra</h2><p>Completa título, género, país, BPM y tonalidad. Usa las notas para contar instrumentación y proceso de grabación.</p></article>
-            <article class="bloque-panel"><h2>Qué pasa después</h2><p>Tu demo entra <b>En revisión</b>. El comité la escucha y la marca como <b>Aprobada</b> o <b>Rechazada</b> con un dictamen que verás en <b>Mis demos</b>.</p></article>
+            <article class="bloque-panel"><h2>Qué pasa después</h2><p>Tu demo entra <b>En revisión</b>. Nuestro equipo la escucha y la marca como <b>Aprobada</b> o <b>Rechazada</b> con un dictamen que verás en <b>Mis demos</b>.</p></article>
           </div>
           <ol class="ruta">
             <li class="hecho"><b>Enviada</b><span>Registras tu demo</span></li>
-            <li><b>En revisión</b><span>El comité la escucha</span></li>
+            <li><b>En revisión</b><span>Nuestro equipo la escucha</span></li>
             <li><b>Dictamen</b><span>Aprobada o rechazada, con comentarios</span></li>
           </ol>
         </section>
 
         <div class="lista-cab" id="lista-cab">
-          <h2><span id="lista-titulo">Expedientes de audio</span> <span class="chip-cuenta mono" id="cuenta">0 REGISTROS</span></h2>
+          <h2><span id="lista-titulo">Demos</span> <span class="chip-cuenta mono" id="cuenta">0 REGISTROS</span></h2>
           <select id="filtro-estado" aria-label="Filtrar por estado">
             <option value="">Todos los estados</option>
             <option value="EN_REVISION">En revisión</option>
@@ -193,45 +236,45 @@
   <dialog id="dlg-demo" class="dlg dlg-ancho">
     <form id="form-demo" method="dialog" novalidate>
       <header class="dlg-cab dlg-cab-demo">
-        <span class="dlg-portada" aria-hidden="true"></span>
+        <span class="dlg-portada" aria-hidden="true">♫</span>
         <div>
-          <p class="eyebrow vino" id="dlg-eyebrow">INGESTA A&amp;R // NUEVO EXPEDIENTE</p>
-          <h2 id="dlg-titulo">Registrar nueva demo</h2>
+          <p class="eyebrow vino" id="dlg-eyebrow">A&amp;R / ENVÍO DE DEMOS</p>
+          <h2 id="dlg-titulo">Enviar demo</h2>
         </div>
         <button type="button" class="btn-icono" id="btn-cerrar-demo" aria-label="Cerrar"><svg class="ic"><use href="#i-x"/></svg></button>
       </header>
 
       <div class="dlg-cuerpo">
         <fieldset class="bloque">
-          <legend><span class="mono">01 //</span> Identidad de la obra</legend>
-          <label class="campo full"><span>Título de la pieza *</span><input id="f-titulo" required maxlength="150" placeholder="Ej. Nocturne in Obsidian, Op. 4"></label>
+          <legend><span class="mono">01 //</span> Sobre tu música</legend>
+          <label class="campo full"><span>Título de la canción *</span><input id="f-titulo" required maxlength="150" placeholder="Nombre de tu canción"></label>
           <div class="cols">
             <label class="campo"><span>Nombre artístico *</span><input id="f-artista" required maxlength="120"></label>
-            <label class="campo"><span>Correo del artista *</span><input id="f-correo" type="email" required maxlength="120"></label>
-            <label class="campo"><span>Género musical *</span><input id="f-genero" required maxlength="80" placeholder="Ej. Neo-Classical"></label>
+            <label class="campo"><span>Correo electrónico *</span><input id="f-correo" type="email" required maxlength="120"></label>
+            <label class="campo"><span>Género musical *</span><input id="f-genero" required maxlength="80" placeholder="Ej. Electrónica"></label>
             <label class="campo"><span>País *</span><input id="f-pais" required maxlength="60" placeholder="Ej. Perú"></label>
           </div>
         </fieldset>
 
         <fieldset class="bloque">
-          <legend><span class="mono">02 //</span> Archivo sonoro y ficha técnica</legend>
-          <div class="cols cols-3">
-            <label class="campo"><span>Formato de audio *</span><input id="f-formato" class="mono" required maxlength="60" placeholder="WAV 24-bit / 48kHz"></label>
-            <label class="campo"><span>BPM</span><input id="f-bpm" class="mono" type="number" min="1" max="400" placeholder="ej. 118"></label>
-            <label class="campo"><span>Tonalidad</span><input id="f-tono" class="mono" maxlength="40" placeholder="ej. D Minor"></label>
+          <legend><span class="mono">02 //</span> Tu demo</legend>
+          <div hidden aria-hidden="true">
+            <input id="f-formato" value="Enlace digital">
+            <input id="f-bpm" type="number">
+            <input id="f-tono">
           </div>
-          <label class="campo full"><span>Enlace de escucha (SoundCloud o Dropbox) *</span>
+          <label class="campo full"><span>Enlace de tu demo *</span>
             <span class="input-icono"><svg class="ic"><use href="#i-link"/></svg><input id="f-enlace" class="mono" type="url" required maxlength="500" placeholder="https://soundcloud.com/tu-artista/tu-demo"></span>
           </label>
-          <p class="ayuda">No se suben archivos: pega un enlace compartido de SoundCloud o Dropbox (https).</p>
-          <label class="campo full"><span>Notas del artista</span><textarea id="f-notas" rows="3" placeholder="Contexto, instrumentación, proceso de grabación…"></textarea></label>
+          <p class="ayuda">Comparte un enlace de SoundCloud o Dropbox que podamos escuchar.</p>
+          <label class="campo full"><span>Mensaje (opcional)</span><textarea id="f-notas" rows="3" placeholder="Cuéntanos un poco sobre tu música…"></textarea></label>
         </fieldset>
 
         <fieldset class="bloque oculto" id="bloque-comite">
-          <legend><span class="mono">03 //</span> Dictamen del comité</legend>
+          <legend><span class="mono">03 //</span> Revisión A&amp;R</legend>
           <div class="cols">
-            <label class="campo"><span>Código de expediente</span><input id="f-codigo" class="mono" maxlength="30" placeholder="Se genera si lo dejas vacío"></label>
-            <label class="campo"><span>Estado curatorial</span>
+            <label class="campo"><span>Código de referencia</span><input id="f-codigo" class="mono" maxlength="30" placeholder="Se genera si lo dejas vacío"></label>
+            <label class="campo"><span>Estado de la demo</span>
               <select id="f-estado">
                 <option value="EN_REVISION">En revisión</option>
                 <option value="APROBADO">Aprobado</option>
@@ -239,18 +282,18 @@
               </select>
             </label>
           </div>
-          <label class="campo full"><span>Dictamen editorial</span><textarea id="f-dictamen" rows="3" placeholder="Observaciones del comité para el artista…"></textarea></label>
+          <label class="campo full"><span>Comentarios para el artista</span><textarea id="f-dictamen" rows="3" placeholder="Observaciones del equipo para el artista…"></textarea></label>
         </fieldset>
       </div>
 
       <footer class="dlg-pie">
         <div class="pie-estado">
-          <span class="mono pie-seguro"><svg class="ic"><use href="#i-lock"/></svg>SESIÓN CIFRADA A&amp;R</span>
+          <span class="mono pie-seguro"><svg class="ic"><use href="#i-lock"/></svg>A&amp;R · NUVOX RECORDS</span>
           <p id="demo-msg" class="mensaje" role="alert"></p>
         </div>
         <div class="pie-acciones">
           <button id="btn-cancelar" class="btn btn-secundario" type="button">Cancelar</button>
-          <button id="btn-guardar" class="btn btn-primario" type="submit">Enviar al comité</button>
+          <button id="btn-guardar" class="btn btn-primario" type="submit">Enviar</button>
         </div>
       </footer>
     </form>
@@ -263,41 +306,41 @@
       <div class="alerta-cab">
         <span class="alerta-icono"><svg class="ic"><use href="#i-warn"/></svg></span>
         <div>
-          <p class="eyebrow vino mono">ACCIÓN IRREVERSIBLE · COMITÉ A&amp;R</p>
-          <h2>Eliminar expediente</h2>
+          <p class="eyebrow vino mono">ACCIÓN IRREVERSIBLE · EQUIPO A&amp;R</p>
+          <h2>Eliminar demo</h2>
         </div>
       </div>
       <button type="button" class="btn-icono" id="btn-cerrar-borrar" aria-label="Cerrar"><svg class="ic"><use href="#i-x"/></svg></button>
     </header>
     <div class="dlg-cuerpo">
-      <p>¿Seguro que deseas eliminar permanentemente este expediente del archivo? Esta operación borra el registro de PostgreSQL y no se puede deshacer.</p>
+      <p>¿Seguro que deseas eliminar permanentemente esta demo del archivo? Esta acción eliminará la demo de forma permanente y no se puede deshacer.</p>
       <dl class="ficha mono">
-        <div><dt>PIEZA:</dt><dd id="b-titulo" class="claro"></dd></div>
+        <div><dt>CANCIÓN:</dt><dd id="b-titulo" class="claro"></dd></div>
         <div><dt>ARTISTA:</dt><dd id="b-artista" class="oro"></dd></div>
-        <div><dt>FORMATO:</dt><dd id="b-formato" class="rosa"></dd></div>
-        <div><dt>EXPEDIENTE:</dt><dd id="b-codigo"></dd></div>
+        <div><dt>TIPO:</dt><dd id="b-formato" class="rosa"></dd></div>
+        <div><dt>CÓDIGO:</dt><dd id="b-codigo"></dd></div>
       </dl>
       <p id="borrar-msg" class="mensaje" role="alert"></p>
     </div>
     <footer class="dlg-pie dlg-pie-der">
-      <button id="btn-no-borrar" class="btn btn-secundario" type="button">Cancelar y mantener</button>
-      <button id="btn-si-borrar" class="btn btn-peligro" type="button"><svg class="ic"><use href="#i-trash"/></svg>Eliminar expediente</button>
+      <button id="btn-no-borrar" class="btn btn-secundario" type="button">Cancelar</button>
+      <button id="btn-si-borrar" class="btn btn-peligro" type="button"><svg class="ic"><use href="#i-trash"/></svg>Eliminar demo</button>
     </footer>
   </dialog>
 
-  <!-- ===================== VEREDICTO RÁPIDO (PUT de estado + dictamen) ===================== -->
+  <!-- ===================== RESULTADO RÁPIDO (PUT de estado + dictamen) ===================== -->
   <dialog id="dlg-veredicto" class="dlg">
     <form id="form-veredicto" method="dialog" novalidate>
       <header class="dlg-cab">
         <div>
-          <p class="eyebrow vino" id="v-eyebrow">VEREDICTO DEL COMITÉ</p>
+          <p class="eyebrow vino" id="v-eyebrow">RESULTADO DEL COMITÉ</p>
           <h2 id="v-titulo">Aprobar demo</h2>
         </div>
         <button type="button" class="btn-icono" id="btn-cerrar-veredicto" aria-label="Cerrar"><svg class="ic"><use href="#i-x"/></svg></button>
       </header>
       <div class="dlg-cuerpo">
         <p id="v-obra" class="v-obra"></p>
-        <label class="campo full"><span>Dictamen para el artista *</span><textarea id="v-dictamen" rows="4" placeholder="Explica la decisión del comité…"></textarea></label>
+        <label class="campo full"><span>Dictamen para el artista *</span><textarea id="v-dictamen" rows="4" placeholder="Explica la decisión del equipo…"></textarea></label>
       </div>
       <footer class="dlg-pie">
         <div class="pie-estado"><p id="v-msg" class="mensaje" role="alert"></p></div>
@@ -311,6 +354,21 @@
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
+
+  <!-- Único cambio de estructura: confirmación de cierre de sesión -->
+  <dialog id="dlg-salir" class="dlg-salir" aria-labelledby="salir-titulo" aria-describedby="salir-descripcion">
+    <div class="dlg-salir-encabezado">
+      <span class="dlg-salir-simbolo" aria-hidden="true"><svg class="ic"><use href="#i-out"/></svg></span>
+      <div><p class="dlg-salir-kicker">NUVOX RECORDS</p><h2 id="salir-titulo">Cerrar sesión</h2></div>
+    </div>
+    <p id="salir-descripcion">¿Quieres salir de tu cuenta? Puedes volver a ingresar cuando quieras.</p>
+    <div class="dlg-salir-acciones">
+      <button type="button" id="salir-cancelar" class="btn btn-secundario">Cancelar</button>
+      <button type="button" id="salir-confirmar" class="btn btn-primario">Cerrar sesión</button>
+    </div>
+  </dialog>
+
   <script src="js/app.js"></script>
+  <script src="js/landing.js"></script>
 </body>
 </html>

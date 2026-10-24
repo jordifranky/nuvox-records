@@ -12,7 +12,7 @@
   --vino: #8E4B4B;
   --vino-hover: #A65A5A;
   --vino-wash: #2A1B1B;
-  --champan: #C2A878;
+  --champan: #C68596;
   --rosa: #FFB3B1;
   /* Texto */
   --marfil: #F5F1E8;
@@ -569,3 +569,68 @@ select { appearance: none; cursor: pointer; padding-right: 2.2rem;
   .dlg-cab-demo { background: none; }
   .dlg-portada { width: 44px; height: 44px; }
 }
+
+/* PORTADA PUBLICA — estilo Obsidian Salon de la guia */
+.home-view{background:#101115;color:#f5f1e8;min-height:100vh}.home-header{display:flex;align-items:center;justify-content:space-between;padding:18px clamp(22px,6vw,90px);border-bottom:1px solid #303036;gap:18px}.home-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:#f5f1e8;font-size:19px;font-weight:800;letter-spacing:.12em;line-height:1.1}.home-brand b{color:#c2a878}.home-brand small{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.15em;color:#aaa5a0;margin-top:6px}.home-brand-icon{font-size:36px;color:#a85963}.home-header nav{display:flex;gap:22px;align-items:center}.home-header nav>a{color:#c4bfb8;text-decoration:none;font-size:12px}.home-header nav>a:hover{color:white}.home-hero{max-width:1320px;margin:auto;min-height:565px;padding:85px 55px;display:grid;grid-template-columns:1.1fr .9fr;gap:80px;align-items:center}.home-hero-copy h1{font-size:clamp(44px,5.1vw,83px);line-height:1.09;letter-spacing:-.065em;margin:18px 0 26px}.home-hero-copy h1 em{color:#be777b;font-style:normal}.home-hero-copy>p:not(.eyebrow){font-size:16px;max-width:540px;color:#b9b4b0;line-height:1.85}.home-actions{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}.home-actions .btn{height:47px;padding:0 22px}.home-hero-note{font-family:var(--mono);font-size:10px;color:#8d919b;letter-spacing:.04em;margin-top:28px}.home-art{border:1px solid #41373b;background:radial-gradient(circle at 50% 40%,#47272e 0,#1e1c24 52%,#101217 100%);aspect-ratio:1.15;border-radius:5px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;box-shadow:0 28px 65px #0008}.home-art-label,.home-art-bottom{position:absolute;font-family:var(--mono);letter-spacing:.12em;font-size:10px;color:#c3b8b0}.home-art-label{top:22px;left:23px}.home-art-bottom{bottom:22px;left:23px;right:23px;display:flex;justify-content:space-between}.home-vinyl{width:69%;aspect-ratio:1;border-radius:50%;background:repeating-radial-gradient(circle,#17181a 0px,#17181a 5px,#242328 6px,#17181a 9px);border:1px solid #55515a;display:grid;place-items:center;box-shadow:0 16px 40px #000a, inset 0 0 15px #000}.home-vinyl-center{width:30%;aspect-ratio:1;border-radius:50%;display:flex;flex-direction:column;justify-content:center;text-align:center;background:#773d47;color:#f7e9d5;border:8px solid #9f6770;font-weight:800;letter-spacing:.12em;font-size:20px}.home-vinyl-center small{font-size:8px}.home-strip{border-block:1px solid #303036;background:#1b1b20;display:flex;justify-content:center;gap:25px;flex-wrap:wrap;padding:20px;color:#b3a9a5;font-family:var(--mono);font-size:10px;letter-spacing:.14em}.home-strip span:nth-child(even){color:#a85963}.home-section{max-width:1200px;margin:auto;padding:80px 35px}.home-section-heading{text-align:center}.home-section-heading .eyebrow{justify-content:center}.home-section h2{font-size:clamp(28px,3vw,43px);margin:10px 0}.home-section-heading>p:last-child,.home-bottom p:not(.eyebrow){color:#b8b3b0}.home-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:43px}.home-steps article{border:1px solid #36353a;background:#1a1b20;padding:27px}.home-steps article span{font-family:var(--mono);color:#b9787e}.home-steps h3{font-size:19px;margin:12px 0}.home-steps p{color:#b9b1aa;line-height:1.8}.home-bottom{border-top:1px solid #323239;display:flex;justify-content:space-between;align-items:center;gap:20px}.home-bottom p:not(.eyebrow){max-width:600px}.home-footer{padding:25px clamp(25px,6vw,90px);border-top:1px solid #303036;display:flex;justify-content:space-between;gap:15px;font-family:var(--mono);font-size:10px;color:#8f8987}.public-dialog{width:min(770px,calc(100% - 20px));max-height:90vh;overflow:auto;background:#1a1a20;color:#f5f1e8;border:1px solid #5a4549;border-radius:8px;padding:0;box-shadow:0 40px 110px #000a}.public-dialog::backdrop{background:#050607d9;backdrop-filter:blur(5px)}.public-dialog form{padding:30px}.public-dialog-head{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid #39333a;padding-bottom:20px;margin-bottom:24px}.public-dialog-head h2{font-size:28px}.public-dialog-head p:not(.eyebrow){color:#aaa}.public-fields{display:grid;grid-template-columns:1fr 1fr;gap:0 20px}.public-wide{grid-column:1/-1}.public-dialog-actions{display:flex;justify-content:flex-end;gap:12px;margin-top:22px}.public-dialog .mensaje{margin-top:12px}@media(max-width:800px){.home-header{flex-wrap:wrap}.home-header nav{gap:9px;flex-wrap:wrap}.home-header nav>a{display:none}.home-hero{grid-template-columns:1fr;padding:70px 23px;gap:32px}.home-art{max-width:470px;width:100%;justify-self:center}.home-steps{grid-template-columns:1fr}.home-bottom{flex-direction:column;align-items:start}.public-fields{grid-template-columns:1fr}.home-footer{flex-direction:column}}
+
+/* Identidad unificada: acento vino en todas las vistas. */
+:root { --champan:#C1848C; --oro-a:#C1848C; --oro-b:#A95E6D; --rosa:#D8A2A9; }
+.home-brand b,.home-brand-icon,.home-hero-copy h1 em,.home-steps article span,
+.home-strip span:nth-child(even),.home-vinyl-center{color:#D8A2A9}
+.home-art{border-color:#583540;background:radial-gradient(circle at 50% 40%,#4c2b38 0,#201b23 56%,#101217 100%)}
+.home-vinyl-center{background:#793E50;border-color:#B47484;color:#fff}
+.topbar .btn-primario,.pie-acciones .btn-primario,.dlg .btn-primario {background:var(--vino);color:var(--marfil)}
+.topbar .btn-primario:hover,.pie-acciones .btn-primario:hover,.dlg .btn-primario:hover {background:var(--vino-hover);color:var(--marfil)}
+.rail-nav a.activo,.rol-chip{border-color:#774351}
+.metrica::before{background:var(--vino)}
+.public-exito{text-align:center;padding:25px 15px 10px}
+.public-exito h3{font-size:25px;margin:12px 0}
+.public-exito>p{color:#c3bbc0}
+.public-exito-icon{display:inline-grid;place-items:center;width:57px;height:57px;border:2px solid var(--vino);border-radius:50%;font-size:31px;color:#D8A2A9}
+.public-codigo{display:inline-block!important;padding:12px 19px;margin:10px 0 18px;background:#282029;border:1px solid #78404c;border-radius:6px;font-family:var(--mono);font-size:18px;letter-spacing:.04em;color:#f6e4e7!important;user-select:all}
+.public-exito .public-dialog-actions{justify-content:center;flex-wrap:wrap}
+.public-dialog .mensaje.error{color:#f0a4ad}
+
+/* Solo colores (sin modificar disposición de componentes ni visualizaciones). */
+:root { --vino:#914D60; --vino-hover:#AC6277; --vino-wash:#302027; --marfil:#F5F1F1; --champan:#C68596; --oro-a:#C68596; --oro-b:#A9677A; }
+.dlg-salir {width:min(440px,calc(100vw - 32px));max-width:100%;margin:auto;padding:28px;border-radius:12px;background:#1D1B22;color:#F5F1F1;border:1px solid #654450;box-shadow:0 30px 90px rgba(0,0,0,.7);font-family:var(--sans);}
+.dlg-salir::backdrop {background:rgba(5,5,9,.76);backdrop-filter:blur(3px);}
+.dlg-salir-encabezado {display:flex;align-items:center;gap:15px;margin-bottom:15px;}
+.dlg-salir-simbolo {width:46px;height:46px;display:grid;place-items:center;border-radius:12px;background:#342530;border:1px solid #765062;color:#D79CAA;}
+.dlg-salir-kicker {font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:#C9899A;margin:0 0 5px;}
+.dlg-salir h2 {font-size:22px;font-weight:700;}
+.dlg-salir>p {font-size:14px;color:#C8BBC3;line-height:1.7;margin:0 0 25px;}
+.dlg-salir-acciones {display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;}
+.dlg-salir-acciones .btn {height:42px;border-radius:7px;}
+.dlg-salir-acciones .btn-primario {background:#914D60;color:#fff;}
+@media(max-width:500px){.dlg-salir-acciones{flex-direction:column-reverse}.dlg-salir-acciones .btn{width:100%;}}
+
+
+/* Ajuste visual final: base grafito y acentos vino; sin alterar elementos ni funcionalidades. */
+:root { --oro:#B97989; --oro-a:#C8899A; --oro-b:#9D5268; --champan:#CA8E9D; --vino:#914D60; --vino-hover:#AB6579; --marfil:#F4F1F2; }
+.rol-chip { background:#914D60 !important; color:#fff !important; border-color:#AE7284 !important; }
+.rail, .topbar { background:#121217 !important; border-color:#363039 !important; }
+.principal { background:#101115 !important; }
+.encabezado h1 { color:#F4F1F2 !important; }
+.rail-nav a.activo { background:#30212B !important; border-color:#865164 !important; color:#F4F1F2 !important; }
+.rail-nav a:hover { background:#281E29 !important; }
+.metrica { background:#1C1B23 !important; border-color:#44333E !important; }
+.metrica:first-child::before, .metrica.rev::before, .metrica.apr::before, .metrica.rec::before { background:#914D60 !important; }
+.dlg .bloque, .bloque-panel { background:#1D1C23 !important; border-color:#45333F !important; }
+.dlg .btn-primario,.btn-primario { background:#914D60 !important; color:#fff !important; border-color:#914D60 !important; }
+.dlg .btn-primario:hover,.btn-primario:hover { background:#AD687C !important; }
+.dlg input:focus,.dlg select:focus,.dlg textarea:focus { border-color:#C8899A !important; box-shadow:0 0 0 2px #C8899A33 !important; }
+
+/* Ajuste visual del formulario: icono musical compacto y encabezado sencillo */
+.dlg-cab-demo { background-image: none !important; padding-top: 1rem; padding-bottom: .85rem; }
+.dlg-cab-demo .dlg-portada { width: 34px; height: 34px; flex: 0 0 34px; display: grid; place-items: center; background: rgba(145,77,96,.16) !important; color: #d5a0ae; border: 1px solid rgba(213,160,174,.32); border-radius: 9px; font-size: 23px; line-height: 1; }
+.dlg-cab-demo h2 { font-size: 20px; }
+
+/* Refinamiento visual: identidad consistente con la portada, sin alterar layouts */
+:root { --champan:#C68596; --marfil:#F5F1F1; --khaki:#C3BAC0; --borde:#3B303A; }
+.dlg-portada { font-size:25px !important; width:42px !important; height:42px !important; min-width:42px !important; display:inline-flex !important; justify-content:center; align-items:center; background:rgba(142,75,95,.14) !important; color:#D5A0AE !important; border-radius:10px !important; }
+.dlg-cab-demo { min-height:76px; }
+
+/* Ajustes de identidad NUVOX: cabecera compacta y tonos unificados */
+.dlg-cab-demo .dlg-portada {width:32px !important;height:32px !important;min-width:32px !important;font-size:20px !important;background-image:none !important;}
+.dlg-cab-demo {min-height:68px !important;background-image:none !important;}
