@@ -5,25 +5,41 @@ import com.nuvoxrecords.backend.entity.Usuario;
 import com.nuvoxrecords.backend.repository.DemoRepository;
 import com.nuvoxrecords.backend.repository.UsuarioRepository;
 import java.time.LocalDateTime;
-import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
+@ConditionalOnProperty(name = "nuvox.seed.enabled", havingValue = "true")
 public class DataInitializer implements CommandLineRunner {
 
     private final UsuarioRepository usuarioRepository;
     private final DemoRepository demoRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
+    @Value("${nuvox.seed.curator-password:}")
+    private String curatorPassword;
+    @Value("${nuvox.seed.artist-password:}")
+    private String artistPassword;
+    @Value("${nuvox.seed.admin-password:}")
+    private String adminPassword;
+    public DataInitializer(
+            UsuarioRepository usuarioRepository,
+            DemoRepository demoRepository,
+            BCryptPasswordEncoder passwordEncoder) {
+
+        this.usuarioRepository = usuarioRepository;
+        this.demoRepository = demoRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
     @Override
     public void run(String... args) {
-        if (!usuarioRepository.existsByUsername("curator@nuvoxrecords.com")) {
+        if (!curatorPassword.isBlank() && !usuarioRepository.existsByUsername("curator@nuvoxrecords.com")) {
             Usuario curador = Usuario.builder()
                     .username("curator@nuvoxrecords.com")
-                    .password(passwordEncoder.encode("Nuvox2024!"))
+                    .password(passwordEncoder.encode(curatorPassword))
                     .nombreCompleto("Elena Vásquez - Executive A&R")
                     .rol("ROLE_COMITE_AR")
                     .activo(true)
@@ -31,20 +47,20 @@ public class DataInitializer implements CommandLineRunner {
             usuarioRepository.save(curador);
         }
 
-        if (!usuarioRepository.existsByUsername("artista@nuvoxrecords.com")) {
+        if (!artistPassword.isBlank() && !usuarioRepository.existsByUsername("artista@nuvoxrecords.com")) {
             Usuario artista = Usuario.builder()
                     .username("artista@nuvoxrecords.com")
-                    .password(passwordEncoder.encode("Artista2024!"))
+                    .password(passwordEncoder.encode(artistPassword))
                     .nombreCompleto("Arvo Valen")
                     .rol("ROLE_ARTISTA")
                     .activo(true)
                     .build();
             usuarioRepository.save(artista);
         }
-        if (!usuarioRepository.existsByUsername("admin@nuvox.com")) {
+        if (!adminPassword.isBlank() && !usuarioRepository.existsByUsername("admin@nuvox.com")) {
             Usuario admin = Usuario.builder()
                     .username("admin@nuvox.com")
-                    .password(passwordEncoder.encode("Admin123!"))
+                    .password(passwordEncoder.encode(adminPassword))
                     .nombreCompleto("Administrador Nuvox Records")
                     .rol("ROLE_COMITE_AR")
                     .activo(true)

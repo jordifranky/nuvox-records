@@ -1,5 +1,10 @@
+# Credenciales locales
+src/main/resources/application.properties
+.env
+.env.*
+!.env.example
+
+# Archivos generados
 target/
 .idea/
 *.iml
-*.log
-.vscode/

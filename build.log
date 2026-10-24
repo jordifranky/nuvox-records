@@ -1,0 +1,85 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------< com.nuvoxrecords:nuvox-records-backend >---------------
+[INFO] Building nuvox-records-backend 1.0.0
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:3.3.2:clean (default-clean) @ nuvox-records-backend ---
+[INFO] Deleting D:\Cibertec\Ciclo 6\DSW II\Proyecto Antigraviti\nuvox-records\target
+[INFO] 
+[INFO] --- maven-resources-plugin:3.3.1:resources (default-resources) @ nuvox-records-backend ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 3 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.11.0:compile (default-compile) @ nuvox-records-backend ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 14 source files with javac [debug release 17] to target\classes
+[INFO] 
+[INFO] --- maven-resources-plugin:3.3.1:testResources (default-testResources) @ nuvox-records-backend ---
+[INFO] Copying 1 resource from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.11.0:testCompile (default-testCompile) @ nuvox-records-backend ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 2 source files with javac [debug release 17] to target\test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:3.1.2:test (default-test) @ nuvox-records-backend ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.nuvoxrecords.backend.NuvoxApiIntegrationTest
+20:04:47.341 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.nuvoxrecords.backend.NuvoxApiIntegrationTest]: NuvoxApiIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:04:47.425 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.nuvoxrecords.backend.NuvoxRecordsBackendApplication for test class com.nuvoxrecords.backend.NuvoxApiIntegrationTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.5)
+
+2026-10-15T20:04:47.723-05:00  INFO 27532 --- [           main] c.n.backend.NuvoxApiIntegrationTest      : Starting NuvoxApiIntegrationTest using Java 21.0.7 with PID 27532 (started by Jordi in D:\Cibertec\Ciclo 6\DSW II\Proyecto Antigraviti\nuvox-records)
+2026-10-15T20:04:47.724-05:00  INFO 27532 --- [           main] c.n.backend.NuvoxApiIntegrationTest      : No active profile set, falling back to 1 default profile: "default"
+2026-10-15T20:04:48.327-05:00  INFO 27532 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-15T20:04:48.373-05:00  INFO 27532 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 40 ms. Found 2 JPA repository interfaces.
+2026-10-15T20:04:48.951-05:00  INFO 27532 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-10-15T20:04:49.045-05:00  INFO 27532 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-10-15T20:04:49.072-05:00  INFO 27532 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-10-15T20:04:49.332-05:00  INFO 27532 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-15T20:04:49.366-05:00  INFO 27532 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-15T20:04:49.587-05:00  INFO 27532 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@645dc557
+2026-10-15T20:04:49.588-05:00  INFO 27532 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-15T20:04:50.363-05:00  INFO 27532 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-15T20:04:50.377-05:00  WARN 27532 --- [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2026-10-15T20:04:50.377-05:00  WARN 27532 --- [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la tabla «demos» no existe, omitiendo
+2026-10-15T20:04:50.378-05:00  WARN 27532 --- [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2026-10-15T20:04:50.378-05:00  WARN 27532 --- [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : la tabla «usuarios» no existe, omitiendo
+2026-10-15T20:04:50.439-05:00  INFO 27532 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-15T20:04:50.861-05:00  WARN 27532 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-10-15T20:04:50.996-05:00  INFO 27532 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2026-10-15T20:04:51.312-05:00  INFO 27532 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@106ac5f4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5eed2edf, org.springframework.security.web.context.SecurityContextHolderFilter@496004e3, org.springframework.security.web.header.HeaderWriterFilter@2dbc66f0, org.springframework.web.filter.CorsFilter@4552e288, org.springframework.security.web.authentication.logout.LogoutFilter@43c64d6f, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@6491006, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@703947bd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@f31b991, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1a67bde5, org.springframework.security.web.session.SessionManagementFilter@f9979cf, org.springframework.security.web.access.ExceptionTranslationFilter@3013e1e8, org.springframework.security.web.access.intercept.AuthorizationFilter@39179470]
+2026-10-15T20:04:51.653-05:00  INFO 27532 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-15T20:04:51.654-05:00  INFO 27532 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-15T20:04:51.654-05:00  INFO 27532 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-15T20:04:51.673-05:00  INFO 27532 --- [           main] c.n.backend.NuvoxApiIntegrationTest      : Started NuvoxApiIntegrationTest in 4.139 seconds (process running for 4.887)
+Java HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+WARNING: A Java agent has been loaded dynamically (C:\Users\Jordi\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.13\byte-buddy-agent-1.14.13.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.743 s -- in com.nuvoxrecords.backend.NuvoxApiIntegrationTest
+[INFO] Running com.nuvoxrecords.backend.repository.DemoRepositoryTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.439 s -- in com.nuvoxrecords.backend.repository.DemoRepositoryTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  12.924 s
+[INFO] Finished at: 2026-10-15T20:04:54-05:00
+[INFO] ------------------------------------------------------------------------
